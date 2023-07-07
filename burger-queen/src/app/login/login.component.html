@@ -5,8 +5,8 @@
 
                 <input type="email" class="bg-custom-b3ebe4 border-3 border-black rounded block w-11/12 h-14 p-2 ml-10 text-3xl font-medium" name="correo" placeholder="E M A I L" [(ngModel)]="mesero.email" required #email="ngModel">
 
-                <div class="my-2 ml-10">
-                    <span class="bg-red-200 text-3xl text-red-700 font-medium rounded px-5 py-1" [hidden]="email.valid || email.pristine">Ingresa tu correo</span>
+                <div class="my-2 ml-10bg-red-200 text-3xl text-red-700 font-medium rounded px-5 py-1" [hidden]="email.valid || email.pristine">
+                    <span *ngIf="email.errors?.['required']">Ingresa tu correo</span>
                     <!-- <span class="bg-red-400 text-3xl text-red-700 font-medium rounded ml-20 px-2 py-1">Ingresa un correo válido</span> -->
                 </div>
             </div>
