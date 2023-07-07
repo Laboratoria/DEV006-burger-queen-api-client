@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
+  mesero = {
+    email: '',
+    password: ''
+  }
+
+  ingresar() {
+    console.log(this.mesero);
+  }
 }
