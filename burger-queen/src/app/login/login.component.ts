@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,12 +8,24 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
-  mesero = {
-    email: '',
-    password: ''
+  get email() {
+    return this.formWaiter.get('email') as FormControl;
   }
 
-  ingresar() {
-    console.log(this.mesero);
+  get password() {
+    return this.formWaiter.get('password') as FormControl;
   }
+
+    formWaiter = new FormGroup({
+      'email': new FormControl('', [Validators.required, Validators.email]),
+      'password': new FormControl('', Validators.required)
+    });
+
+    ingresar(){
+      console.log(this.formWaiter.value)
+    }
+
+    // email = new FormControl('', [Validators.required, Validators.email]);
+    // password = new FormControl('', Validators.required);
+
 }
