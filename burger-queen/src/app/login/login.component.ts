@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { AuthServiceService } from '../services/auth-service.service';
+import { UserCredentials } from '../interfaces/userInterfaces';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,9 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginComponent {
 
-  constructor(private http: HttpClient) {
-
-  }
+  constructor(private authService: AuthServiceService) {}
 
   get email() {
     return this.formWaiter.get('email') as FormControl;
@@ -19,26 +18,17 @@ export class LoginComponent {
   get password() {
     return this.formWaiter.get('password') as FormControl;
   }
+  formWaiter = new FormGroup({
+    'email': new FormControl('', [Validators.required, Validators.email]),
+    'password': new FormControl('', Validators.required)
+  });
 
-    formWaiter = new FormGroup({
-      'email': new FormControl('', [Validators.required, Validators.email]),
-      'password': new FormControl('', Validators.required)
-    });
 
     ingresar(){
-      // console.log(this.formWaiter.value)
-      const url = 'https://app.swaggerhub.com/apis-docs/ssinuco/BurgerQueenAPI/2.0.0#/auth/getToken';
-      const body = this.formWaiter.value;
-
-      this.http.post(url, body).subscribe(
-        (response : any) => {
-          const accessToken = response.accessToken;
-          console.log('Token de acceso:', accessToken);
-        },
-        (error) => {
-          console.log('Error de autenticacion:', error);
-        }
-      );
+      console.log(this.formWaiter.value)
+      this.authService.logIn(this.formWaiter.value as UserCredentials).subscribe((res) => console.log(res))
+      //como funcionan observables, suscribir
+      //agregar url consultar cu=omo acceder
     }
 
 }
