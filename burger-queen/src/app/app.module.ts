@@ -1,19 +1,15 @@
 import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-
-//login
-//menu
-//pedidos
-//notFound
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
@@ -30,12 +26,11 @@ const routes: Routes = [
     component: NotFoundComponent,
   }
 ]
-
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
