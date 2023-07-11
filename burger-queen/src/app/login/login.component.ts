@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,9 +8,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class LoginComponent {
 
-  // constructor(private fb: FormBuilder) {
+  constructor(private http: HttpClient) {
 
-  // }
+  }
 
   get email() {
     return this.formWaiter.get('email') as FormControl;
@@ -26,7 +26,19 @@ export class LoginComponent {
     });
 
     ingresar(){
-      console.log(this.formWaiter.value)
+      // console.log(this.formWaiter.value)
+      const url = 'https://app.swaggerhub.com/apis-docs/ssinuco/BurgerQueenAPI/2.0.0#/auth/getToken';
+      const body = this.formWaiter.value;
+
+      this.http.post(url, body).subscribe(
+        (response : any) => {
+          const accessToken = response.accessToken;
+          console.log('Token de acceso:', accessToken);
+        },
+        (error) => {
+          console.log('Error de autenticacion:', error);
+        }
+      );
     }
 
 }
