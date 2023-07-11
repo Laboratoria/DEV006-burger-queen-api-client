@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { AuthServiceService } from '../services/auth-service.service';
+import { UserCredentials } from '../interfaces/userInterfaces';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginComponent {
 
-  constructor(private http: HttpClient) {
+  constructor(private authService: AuthServiceService) {
 
   }
 
@@ -26,19 +27,9 @@ export class LoginComponent {
     });
 
     ingresar(){
-      // console.log(this.formWaiter.value)
-      const url = 'https://app.swaggerhub.com/apis-docs/ssinuco/BurgerQueenAPI/2.0.0#/auth/getToken';
-      const body = this.formWaiter.value;
-
-      this.http.post(url, body).subscribe(
-        (response : any) => {
-          const accessToken = response.accessToken;
-          console.log('Token de acceso:', accessToken);
-        },
-        (error) => {
-          console.log('Error de autenticacion:', error);
-        }
-      );
+      console.log(this.formWaiter.value)
+      this.authService.logIn(this.formWaiter.value as UserCredentials).subscribe((res) => console.log(res))
+      //como funcionan observables, suscribir
+      //agregar url consultar cu=omo acceder 12ad622
     }
-
 }
