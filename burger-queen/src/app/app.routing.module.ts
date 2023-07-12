@@ -14,11 +14,10 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
-  // {
-  //   path: 'mesero',
-  //   component: MeseroComponent,
-  //   loadChildren: () => import('./mesero/mesero.module').then(m => m.MeseroModule)
-  // },
+  {
+    path: 'waiter',
+    loadChildren: () => import('./waiter/waiter.module').then(m => m.WaiterModule)
+  },
   {
     path: '**',
     component: NotFoundComponent
