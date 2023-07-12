@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { MeseroComponent } from './mesero/mesero.component';
 
 
 const routes: Routes = [
@@ -15,11 +14,11 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
-  {
-    path: 'mesero',
-    component: MeseroComponent,
-    loadChildren: () => import('./mesero/mesero.module').then(m => m.MeseroModule)
-  },
+  // {
+  //   path: 'mesero',
+  //   component: MeseroComponent,
+  //   loadChildren: () => import('./mesero/mesero.module').then(m => m.MeseroModule)
+  // },
   {
     path: '**',
     component: NotFoundComponent
