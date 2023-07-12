@@ -8,28 +8,12 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
+// import { LoginComponent } from './acceso/login/login.component';
 
-const routes: Routes = [
-  {
-    path: 'login',
-    component: LoginComponent,
-  },
-  {
-    path: '',
-    redirectTo: '/login',
-    pathMatch: 'full',
-  },
-  {
-    path: '**',
-    component: NotFoundComponent,
-  }
-]
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    // LoginComponent,
     NotFoundComponent,
   ],
   imports: [
@@ -37,7 +21,6 @@ const routes: Routes = [
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes),
     HttpClientModule
   ],
   providers: [],
