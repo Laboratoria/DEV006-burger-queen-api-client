@@ -30,6 +30,6 @@ export class LoginComponent {
       console.log(this.formWaiter.value)
       this.authService.logIn(this.formWaiter.value as UserCredentials).subscribe((res) => console.log(res))
       //como funcionan observables, suscribir
-      //agregar url consultar cu=omo acceder 12ad622
+      //agregar url consultar cuomo acceder
     }
 }
