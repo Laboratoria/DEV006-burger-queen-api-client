@@ -8,9 +8,12 @@ import { Observable } from 'rxjs';
 })
 export class AuthServiceService {
 
+  private backendURL = 'http://localhost:8080';
+
   constructor(private http: HttpClient) { }
 
   logIn(body: UserCredentials):Observable<any> {
-    return this.http.post('url', body)
+    const loginURL = `${this.backendURL}/login`;
+    return this.http.post(loginURL, body)
   }
 }

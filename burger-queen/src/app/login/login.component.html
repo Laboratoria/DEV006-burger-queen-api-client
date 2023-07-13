@@ -4,7 +4,7 @@
         <form  class="space-y-11 mt-52" [formGroup]="formWaiter" (ngSubmit)="ingresar()">
             <div class="">
 
-                <input type="email" formControlName="email" class="bg-custom-b3ebe4 border-3 border-black rounded block w-11/12 h-16 p-2 ml-10 text-3xl font-medium" name="correo" placeholder="E M A I L" >
+                <input type="email" formControlName="email" class="bg-white border-4 border-black rounded block w-11/12 h-16 p-2 ml-10 text-3xl font-medium" name="correo" placeholder="E M A I L" >
 
                 <div class="my-2 ml-10 bg-red-200 text-3xl text-red-700 font-medium rounded px-5 py-1" [hidden]="email.valid || email.pristine">
                     <span *ngIf="email?.errors?.['required']">Ingresa tu correo</span>
@@ -13,7 +13,7 @@
             </div>
 
             <div class="">
-                <input type="password" formControlName="password" class="bg-custom-b3ebe4 border-3 border-black rounded block w-11/12 h-16 p-2 ml-10 text-3xl font-medium" name="contraseña" placeholder="P A S S W O R D" >
+                <input type="password" formControlName="password" class="bg-white border-4 border-black rounded block w-11/12 h-16 p-2 ml-10 text-3xl font-medium" name="contraseña" placeholder="P A S S W O R D" >
 
                 <div class="mt-2 ml-10 bg-red-200 text-3xl text-red-700 font-medium rounded px-5 py-1" [hidden]="password.valid || password.pristine">
                     <span>Ingresa tu contraseña</span>
@@ -21,7 +21,7 @@
                 </div>
             </div>
 
-            <button class="login-btn bg-orange-800 h-20 w-48 rounded-md ml-10" [disabled]="formWaiter.invalid">
+            <button class="login-btn bg-custom-fa81aa h-20 w-48 rounded-md ml-10">
                 Ingresar
             </button>
         </form>
