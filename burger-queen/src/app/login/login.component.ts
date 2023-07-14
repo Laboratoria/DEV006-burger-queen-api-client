@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthServiceService } from '../services/auth-service.service';
 import { UserCredentials } from '../interfaces/userInterfaces';
@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
 
   constructor(private authService: AuthServiceService, private router: Router) {
@@ -29,6 +29,16 @@ export class LoginComponent {
       'password': new FormControl('', Validators.required)
     });
 
+    ngOnInit(): void {
+      this.checkLocalStorage();
+    }
+
+    checkLocalStorage(){
+      if(localStorage.getItem('token')){
+        this.router.navigate(['waiter']);
+      }
+    }
+
     ingresar(){
       console.log(this.formWaiter.value);
 
@@ -36,6 +46,7 @@ export class LoginComponent {
     
       this.authService.logIn(this.formWaiter.value as UserCredentials).subscribe((res) => {
         console.log(res)
+        localStorage.setItem('token', res.accessToken)
         Swal.fire({
           icon: 'success',
           title: 'Inicio de sesion exitoso',
