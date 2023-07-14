@@ -45,10 +45,11 @@ export class LoginComponent {
         this.router.navigate(['./waiter']);
       },
       (error) => {
+        console.log(error)
         Swal.fire({
           icon: 'error',
           title: error['status'],
-          text: 'Usuario no registrado',
+          text: 'Usuario o contraseña incorrectos',
           confirmButtonText:'Aceptar'
         })
       })
