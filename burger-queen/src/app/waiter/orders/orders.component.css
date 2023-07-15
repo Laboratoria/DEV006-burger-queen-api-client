@@ -1,12 +1,39 @@
-.menu {
+body {
+    background-image: url('../../../assets/fondo80.png');
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+.menu{
     font-size: 30px;
     font-weight: bold;
     font-family: 'Single Day', cursive;
     color: #000;
-    border: 4px solid #000;
+    border: 4px solid #000000;
 }
-
-.orden {
+.btn {
+    font-family: 'Single Day', cursive;
+    color: #000;
+    border: 4px solid #000000;
+}
+.orden{
     /* border-radius: 50px; */
     border: 4px solid #000;
 }
+.input-cliente {
+    border: 1px solid #000;
+}
+.desayuno-item {
+    border: 4px solid #000;
+}
+.desayuno-item img { 
+    object-fit: cover;
+}
+.order-items {
+    border: 4px solid #000;
+  }
+  .order-items ul {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+  .order-items li {
+    margin-bottom: 10px;
+  }

@@ -1,14 +1,9 @@
 <body>
-    <section class="h-screen ">
-      <div class="flex flex-row">
-        
-        <img class="h-32 ml-10 mt-3" src="../../../assets/LogoBQ.png" alt="burger queen">
-        <!-- <div class="mt-12">
-        <span class="menu bg-custom-b3ebe4 py-2 px-3 ">Menu</span>
-      </div> -->
+  <section class="h-screen">
+    <div class="flex flex-row">
+      <img class="h-40 ml-10 mt-3" src="../../../assets/LogoBQ.png" alt="burger queen" />
 
       <div class="btns mt-4">
-
         <button class="menu bg-custom-fa81aa h-20 w-48 rounded-md ml-16">
           Desayuno
         </button>
@@ -16,30 +11,90 @@
         <button class="menu bg-custom-fa81aa h-20 w-48 rounded-md ml-3">
           Almuerzo
         </button>
-
       </div>
 
-      <div class="logOut ml-80">
+      <!-- <div class="logOut ml-80">
         <button class="menu bg-custom-b3ebe4 h-20 w-20 rounded-md mt-4">
-          <img src="../../../assets/logOut.png">
+          <img src="../../../assets/logOut.png" />
         </button>
-      </div>
+      </div> -->
     </div>
 
-<section class="h-3/4 w-11/12 m-auto bg-fuchsia-500">
-  <!-- MENU DESAYUNO  -->
-<!-- MENU ALMUERZO -->
-<!-- PEDIDO DEL CLIENTE -->
-<div class="orden flex justify-end bg-slate-100 w-2/5 h-full ml-auto p-3">
-  <div class="cliente flex flex-col w-full">
-    <label for="cliente">Cliente:</label>
-    <input class="w-3/4" type="text" placeholder="cliente" id="cliente">
-  </div>
-  <div class="mesa flex flex-col w-full">
-    <label for="mesa">Mesa:</label>
-    <input class="w-3/4" type="text" placeholder="mesa" id="mesa">
-  </div>
-  </div>
-</section>
-    </section>
+    <main class="h-3/4 w-11/12 m-auto">
+      <!-- MENU DESAYUNO  -->
+
+      <div class="desyuno-container h-full flex flex-row">
+        <div class="desayuno-items flex-1">
+          <figure class="desayuno-item w-40 h-auto p-2 mb-2 bg-white" *ngFor="let item of menuItems"
+            (click)="addToOrderList(item)">
+            <img class="h-16" [src]="'../../../assets/' + item.img" alt="{{ item.nombre }}" />
+            <h3>{{ item.nombre }}</h3>
+            <p>Precio: ${{ item.precio }}</p>
+          </figure>
+        </div>
+
+        <!-- MENU ALMUERZO -->
+
+        <!-- PEDIDO DEL CLIENTE -->
+
+        <div class="order-items flex justify-end bg-slate-100 w-2/5 h-full ml-auto p-3 ">
+          <section class="flex flex-col w-full">
+
+            <div class="mesa-cliente flex flex-row">
+              <div class="cliente flex flex-col w-full">
+                <label class="text-lg" for="cliente">Cliente:</label>
+                <input class="input-cliente w-3/4" type="text" placeholder="cliente" id="cliente" />
+              </div>
+              <div class="mesa flex flex-col w-full">
+                <label class="text-lg" for="mesa">Mesa:</label>
+                <input class="input-cliente w-3/4" type="text" placeholder="mesa" id="mesa" />
+              </div>
+            </div>
+
+            <div class="pedido flex flex-col">
+              <table class="mt-3">
+                <thead>
+                  <tr>
+                    <th>CANTIDAD</th>
+                    <th>PRODUCTO</th>
+                    <th>PRECIO</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <ng-container *ngFor="let orderItem of orderItems">
+                    <tr>
+                      <td class="text-lg">{{ orderItem.cantidad }}</td>
+                      <td class="text-lg">{{ orderItem.nombre }}</td>
+                      <td class="text-lg">
+                        <ng-container *ngIf="orderItem.precio !== undefined && orderItem.cantidad !== undefined">
+                          - ${{ orderItem.precio * orderItem.cantidad }}
+                        </ng-container>
+                      </td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+
+              <div class="total mt-3 text-2xl">
+                Total: ${{ calcularTotal() }}
+              </div>
+            </div>
+
+            <div class="flex flex-row justify-end">
+              <button class=" btn bg-custom-fa81aa w-24 h-16 mr-10">
+                Cancelar.
+              </button>
+              <button class="btn bg-custom-b3ebe4 w-24 h-16">
+                Enviar a cocina.
+              </button>
+            </div>
+
+          </section>
+        </div>
+      </div>
+
+
+    </main>
+  </section>
 </body>
