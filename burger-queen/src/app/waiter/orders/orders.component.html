@@ -27,9 +27,9 @@
         <div class="desayuno-items flex-1">
           <figure class="desayuno-item w-40 h-auto p-2 mb-2 bg-white" *ngFor="let item of menuItems"
             (click)="addToOrderList(item)">
-            <img class="h-16" [src]="'../../../assets/' + item.img" alt="{{ item.nombre }}" />
-            <h3>{{ item.nombre }}</h3>
-            <p>Precio: ${{ item.precio }}</p>
+            <img class="h-16" [src]="'../../../assets/' + item.image" alt="{{ item.name }}" />
+            <h3>{{ item.name }}</h3>
+            <p>Precio: ${{ item.price }}</p>
           </figure>
         </div>
 
@@ -64,11 +64,11 @@
                 <tbody>
                   <ng-container *ngFor="let orderItem of orderItems">
                     <tr>
-                      <td class="text-lg">{{ orderItem.cantidad }}</td>
-                      <td class="text-lg">{{ orderItem.nombre }}</td>
+                      <td class="text-lg">{{ orderItem.quantity }}</td>
+                      <td class="text-lg">{{ orderItem.name }}</td>
                       <td class="text-lg">
-                        <ng-container *ngIf="orderItem.precio !== undefined && orderItem.cantidad !== undefined">
-                          - ${{ orderItem.precio * orderItem.cantidad }}
+                        <ng-container *ngIf="orderItem.price !== undefined && orderItem.quantity !== undefined">
+                          - ${{ orderItem.price * orderItem.quantity }}
                         </ng-container>
                       </td>
                     </tr>

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { MenuItem } from 'src/app/interfaces/menuInterface';
+import { ProductsServiceService } from 'src/app/services/products-service.service';
+import { Observable } from 'rxjs';
+import { MenuItem, MenuObjects } from 'src/app/interfaces/menuInterface';
 
 @Component({
   selector: 'app-orders',
@@ -8,64 +10,63 @@ import { MenuItem } from 'src/app/interfaces/menuInterface';
 })
 export class OrdersComponent {
 
+  // constructor(private products: ProductsServiceService) { }
+
+  // ngOnInit(): void {
+  //   this.products.getAllProducts().subscribe(data => {
+  //     console.log(data)
+  //   })
+  // }
+
 menuItems: MenuItem[] = [
   {
-    nombre: 'Cafe americano',
-    img: 'cafe.png',
-    precio: 5,
+    name: 'Cafe americano',
+    image: 'cafe.png',
+    type: 'Desayuno',
+    price: 5,
   },
   {
-    nombre: 'Cafe con leche',
-    img: 'cafe.png',
-    precio: 7,
+    name: 'Cafe con leche',
+    image: 'cafe.png',
+    type: 'Desayuno',
+    price: 7,
   },
   {
-    nombre: 'Sandwich de jamon y queso',
-    img: 'sandwich.png',
-    precio: 10,
+    name: 'Sandwich de jamon y queso',
+    image: 'sandwich.png',
+    type: 'Desayuno',
+    price: 10,
   },
   {
-    nombre: 'Jugo de frutas natural',
-    img: 'burgerwithCat.png',
-    precio: 7,
+    name: 'Jugo de frutas natural',
+    image: 'burgerwithCat.png',
+    type: 'Desayuno',
+    price: 7,
   }
 ];
 
 orderItems: MenuItem[] = [];
 
 addToOrderList(item: MenuItem){
-  const existingItem = this.orderItems.find(orderItem => orderItem.nombre === item.nombre);
+  const existingItem = this.orderItems.find(orderItem => orderItem.name === item.name);
   if (existingItem) {
-    if(existingItem.cantidad){
-      existingItem.cantidad++;
+    if(existingItem.quantity){
+      existingItem.quantity++;
     } else {
-      existingItem.cantidad=1;
+      existingItem.quantity=1;
     }
   } else {
-    this.orderItems.push({...item, cantidad: 1 });
+    this.orderItems.push({...item, quantity: 1 });
   }
 }
 
 calcularTotal() {
   return this.orderItems.reduce((total, item) => {
-    if(item.cantidad) {
-      return total + (item.precio * item.cantidad);
+    if(item.quantity) {
+      return total + (item.price * item.quantity);
     } else {
       return total;
     }
   }, 0)
 }
-//  products?: any[];
-
-//  constructor(private menuProducts: ProductsServiceService) {}
-
-//  ngOnInit() {
-//   this.fetchProducts();
-//  }
-
-//  fetchProducts() {
-//   this.menuProducts.getProducts().subscribe(products => {
-//     this.products = products;
-//   });
-//  }
 }

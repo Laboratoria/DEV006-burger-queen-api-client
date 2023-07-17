@@ -1,6 +1,15 @@
 export interface MenuItem {
-    nombre: string;
-    img: string;
-    precio: number;
-    cantidad?: number;
+    name: string;
+    image: string;
+    price: number;
+    quantity?: number;
+}
+
+export interface MenuObjects {
+    id: number,
+    name: string,
+    price: number,
+    image: string,
+    type: string,
+    quantity?: number;
 }
