@@ -4,58 +4,51 @@
       <img class="h-40 ml-10 mt-3" src="../../../assets/LogoBQ.png" alt="burger queen" />
 
       <div class="btns mt-4">
-        <button class="menu bg-custom-fa81aa h-20 w-48 rounded-md ml-16">
+        <button class="menu bg-custom-fa81aa h-20 w-48 rounded-md ml-16" (click)="showMenu('Desayuno')">
           Desayuno
         </button>
 
-        <button class="menu bg-custom-fa81aa h-20 w-48 rounded-md ml-3">
+        <button class="menu bg-custom-fa81aa h-20 w-48 rounded-md ml-3" (click)="showMenu('Almuerzo')">
           Almuerzo
         </button>
       </div>
-
-      <!-- <div class="logOut ml-80">
-        <button class="menu bg-custom-b3ebe4 h-20 w-20 rounded-md mt-4">
-          <img src="../../../assets/logOut.png" />
-        </button>
-      </div> -->
+      <!-- Boton cerrar sesion -->    
     </div>
 
     <main class="h-3/4 w-11/12 m-auto">
-      <!-- MENU DESAYUNO  -->
+      
+      <!-- MENU DESAYUNO / ALMUERZO -->
 
       <div class="desyuno-container h-full flex flex-row">
-        <div class="desayuno-items flex-1">
-          <figure class="desayuno-item w-40 h-auto p-2 mb-2 bg-white" *ngFor="let item of menuItems"
+        <div class="desayuno-items grid-container w-3/5 mr-5">
+          <figure class="desayuno-item p-1 bg-slate-200" *ngFor="let item of filteredItems"
             (click)="addToOrderList(item)">
-            <img class="h-16" [src]="'../../../assets/' + item.image" alt="{{ item.name }}" />
-            <h3>{{ item.name }}</h3>
-            <p>Precio: ${{ item.price }}</p>
+            <img class="h-16 m-auto" [src]="'../../../assets/' + item.image" alt="{{ item.name }}" />
+            <h3 class="text-xl font-bold text-center">{{ item.name }} - ${{ item.price }}</h3>
           </figure>
         </div>
 
-        <!-- MENU ALMUERZO -->
-
         <!-- PEDIDO DEL CLIENTE -->
 
-        <div class="order-items flex justify-end bg-slate-100 w-2/5 h-full ml-auto p-3 ">
+        <div class="order-items flex justify-end bg-slate-200 w-2/5 h-full ml-auto p-3 ">
           <section class="flex flex-col w-full">
 
             <div class="mesa-cliente flex flex-row">
               <div class="cliente flex flex-col w-full">
-                <label class="text-lg" for="cliente">Cliente:</label>
-                <input class="input-cliente w-3/4" type="text" placeholder="cliente" id="cliente" />
+                <label class="text-xl font-medium" for="cliente">Cliente:</label>
+                <input class="input-cliente w-full h-8 text-xl" type="text" placeholder="cliente" id="cliente" />
               </div>
-              <div class="mesa flex flex-col w-full">
-                <label class="text-lg" for="mesa">Mesa:</label>
-                <input class="input-cliente w-3/4" type="text" placeholder="mesa" id="mesa" />
+              <div class="mesa ml-4 flex flex-col w-full">
+                <label class="text-xl font-medium" for="mesa">Mesa:</label>
+                <input class="input-cliente w-2/4 h-8 text-xl" type="text" placeholder="mesa" id="mesa" />
               </div>
             </div>
 
             <div class="pedido flex flex-col">
               <table class="mt-3">
                 <thead>
-                  <tr>
-                    <th>CANTIDAD</th>
+                  <tr class="text-lg">
+                    <th>QTY</th>
                     <th>PRODUCTO</th>
                     <th>PRECIO</th>
                   </tr>
@@ -64,9 +57,9 @@
                 <tbody>
                   <ng-container *ngFor="let orderItem of orderItems">
                     <tr>
-                      <td class="text-lg">{{ orderItem.quantity }}</td>
-                      <td class="text-lg">{{ orderItem.name }}</td>
-                      <td class="text-lg">
+                      <td class="text-xl my-1">{{ orderItem.quantity }}</td>
+                      <td class="text-xl my-1">{{ orderItem.name }}</td>
+                      <td class="text-xl my-1">
                         <ng-container *ngIf="orderItem.price !== undefined && orderItem.quantity !== undefined">
                           - ${{ orderItem.price * orderItem.quantity }}
                         </ng-container>
@@ -76,17 +69,17 @@
                 </tbody>
               </table>
 
-              <div class="total mt-3 text-2xl">
+              <div class="total mt-3 mb-2 text-2xl font-semibold">
                 Total: ${{ calcularTotal() }}
               </div>
             </div>
 
             <div class="flex flex-row justify-end">
-              <button class=" btn bg-custom-fa81aa w-24 h-16 mr-10">
-                Cancelar.
+              <button class="cancelar-orden btn text-2xl font-bold bg-custom-dab5e1 w-32 h-16 mr-10" (click)="cancelarOrden()">
+                Cancelar
               </button>
-              <button class="btn bg-custom-b3ebe4 w-24 h-16">
-                Enviar a cocina.
+              <button class="btn text-2xl font-bold bg-custom-b3ebe4 w-32 h-16" (click)="enviarOrden()">
+                Enviar
               </button>
             </div>
 
