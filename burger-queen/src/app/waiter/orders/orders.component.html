@@ -21,9 +21,9 @@
 
       <div class="desyuno-container h-full flex flex-row">
         <div class="desayuno-items grid-container w-3/5 mr-5">
-          <figure class="desayuno-item p-1 bg-slate-200" *ngFor="let item of filteredItems"
+          <figure class="desayuno-item p-1 bg-slate-200" *ngFor="let item of menuItems"
             (click)="addToOrderList(item)">
-            <img class="h-16 m-auto" [src]="'../../../assets/' + item.image" alt="{{ item.name }}" />
+            <img class="h-16 m-auto" src="{{ item.image }}" alt="{{ item.name }}" />
             <h3 class="text-xl font-bold text-center">{{ item.name }} - ${{ item.price }}</h3>
           </figure>
         </div>
