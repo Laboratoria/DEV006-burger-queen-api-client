@@ -19,6 +19,14 @@ const routes: Routes = [
     loadChildren: () => import('./waiter/waiter.module').then(m => m.WaiterModule)
   },
   {
+    path: 'chef',
+    loadChildren: () => import('./chef/chef.module').then(m => m.ChefModule)
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+  },
+  {
     path: '**',
     component: NotFoundComponent
   }
