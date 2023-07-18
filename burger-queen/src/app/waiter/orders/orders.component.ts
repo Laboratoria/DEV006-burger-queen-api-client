@@ -3,6 +3,7 @@ import { ProductsServiceService } from 'src/app/services/products-service.servic
 import { MenuItem } from 'src/app/interfaces/menuInterface';
 import Swal from 'sweetalert2';
 import { OrderProducts } from 'src/app/interfaces/order-products';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 @Component({
   selector: 'app-orders',
@@ -14,7 +15,7 @@ export class OrdersComponent {
 
   menuItems: MenuItem[] = [];
   
-  constructor(public products: ProductsServiceService) { }
+  constructor(public products: ProductsServiceService, private authService: AuthServiceService) { }
 
 showMenu(type: string) {
   this.products.getAllProducts().subscribe((data: MenuItem[]) => {
@@ -71,5 +72,9 @@ Swal.fire({
 
 enviarOrden(){
   console.log('se envio la orden')
+}
+
+logout() {
+  this.authService.logOut();
 }
 }
