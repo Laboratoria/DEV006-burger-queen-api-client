@@ -164,21 +164,6 @@ Swal.fire({
     )
   }
 })
-    // Swal.fire({
-    //   title: 'Seguro que deseas cancelar la orden?',
-    //   showCancelButton: true,
-    //   confirmButtonText: 'Sí, cancelar',
-    //   cancelButtonText: 'No, seguir ordenando',
-    //   icon: 'warning',
-    // }).then((result) => {
-    //   /* Read more about isConfirmed, isDenied below */
-    //   if (result.isConfirmed) {
-    //     this.orderItems = []; // Vaciar el arreglo orderItems
-    //     Swal.fire('Orden cancelada', '', 'success');
-    //   } else {
-    //     Swal.fire('La orden no fue cancelada', '', 'info');
-    //   }
-    // })
 }
 
 enviarOrden(){

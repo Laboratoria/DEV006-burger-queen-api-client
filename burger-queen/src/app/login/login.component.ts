@@ -44,16 +44,33 @@ export class LoginComponent implements OnInit {
 
       if (this.formWaiter.valid){
     
+        let role: string;
+
       this.authService.logIn(this.formWaiter.value as UserCredentials).subscribe((res) => {
         console.log(res)
+
+        role = res.user.role
+        //Guardar datos en localStorage
         localStorage.setItem('token', res.accessToken)
+        localStorage.setItem('user-id', (res.user.id))
+        localStorage.setItem('user-email', (res.user.email))
+        localStorage.setItem('user-rol', (res.user.role))
+        //Dependiendo el rol sera la ruta
+        this.router.navigate(['./waiter']);
+
+      //   if (role === 'waiter') {
+      //   this.router.navigate(['./waiter']);
+      // } else if (role === 'admin') {
+      //   this.router.navigate(['./admin']);
+      // } else if (role === 'chef') {
+      //   this.router.navigate(['./chef'])
+      // }
         Swal.fire({
           icon: 'success',
           title: 'Inicio de sesion exitoso',
           text:'¡Bienvenido!',
           confirmButtonText:'Aceptar'
         });
-        this.router.navigate(['./waiter']);
       },
       (error) => {
         console.log(error)
