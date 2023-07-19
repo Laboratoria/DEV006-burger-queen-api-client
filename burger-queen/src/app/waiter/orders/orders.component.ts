@@ -38,6 +38,33 @@ addToOrderList(item: MenuItem){
   }
 }
 
+deleteProduct(item: MenuItem) {
+  console.log('se borro')
+  const existingItem = this.orderItems.find(orderItem => orderItem.name === item.name);
+  if(existingItem) {
+    if(existingItem.quantity && existingItem.quantity > 1) {
+      existingItem.quantity--;
+    } else {
+      const index = this.orderItems.indexOf(existingItem);
+      this.orderItems.splice(index, 1)
+    }
+  }
+  }
+  
+  addProduct(item: MenuItem) {
+    console.log('uno mas')
+    const existingItem = this.orderItems.find(orderItem => orderItem.name === item.name);
+    if(existingItem) {
+      if(existingItem.quantity) {
+        existingItem.quantity++;
+      } else {
+        existingItem.quantity=1;
+      }
+    } else {
+      this.orderItems.push({...item, quantity: 1 });
+    }
+  }
+
 calcularTotal() {
   return this.orderItems.reduce((total, item) => {
     if(item.quantity) {
@@ -56,8 +83,8 @@ Swal.fire({
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
   cancelButtonColor: '#d33',
-  confirmButtonText: 'Si, la quiero cancelar',
-  cancelButtonText: 'No, no quiero cancelarla'
+  confirmButtonText: 'Si',
+  cancelButtonText: 'No'
 }).then((result) => {
   if (result.isConfirmed) {
     this.orderItems = [];

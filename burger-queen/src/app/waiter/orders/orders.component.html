@@ -35,7 +35,7 @@
 
         <!-- PEDIDO DEL CLIENTE -->
 
-        <div class="order-items flex justify-end bg-slate-200 w-2/5 h-full ml-auto p-3 ">
+        <div class="order-items flex justify-end bg-slate-200 w-2/5 h-full ml-auto p-2 ">
           <section class="flex flex-col w-full">
 
             <div class="mesa-cliente flex flex-row">
@@ -54,6 +54,7 @@
                 <thead>
                   <tr class="text-lg">
                     <th>QTY</th>
+                    <th> </th>
                     <th>PRODUCTO</th>
                     <th>PRECIO</th>
                   </tr>
@@ -62,11 +63,15 @@
                 <tbody>
                   <ng-container *ngFor="let orderItem of orderItems">
                     <tr>
-                      <td class="text-xl my-1">{{ orderItem.quantity }}</td>
-                      <td class="text-xl my-1">{{ orderItem.name }}</td>
-                      <td class="text-xl my-1">
+                      <td class="text-xl my-2">{{ orderItem.quantity }}</td>
+                      <td class="flex flex-row mt-2 mr-2">
+                      <img class="h-5 mr-3" src="../../../assets/menos1.png" alt="delete" (click)="deleteProduct(orderItem)">
+                      <img class="h-5 mr-2" src="../../../assets/mas.png" alt="add" (click)="addProduct(orderItem)">
+                    </td>
+                      <td class="text-xl my-2">{{ orderItem.name }}</td>
+                      <td class="text-xl my-2">
                         <ng-container *ngIf="orderItem.price !== undefined && orderItem.quantity !== undefined">
-                          - ${{ orderItem.price * orderItem.quantity }}
+                          -${{ orderItem.price * orderItem.quantity }}
                         </ng-container>
                       </td>
                     </tr>
