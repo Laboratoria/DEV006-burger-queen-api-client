@@ -34,7 +34,7 @@
         <div class="desayuno-items grid-container w-3/5 mr-5">
           <figure class="desayuno-item p-1 bg-slate-200" *ngFor="let item of menuItems" (click)="addToOrderList(item)">
             <img class="h-16 m-auto" src="{{ item.image }}" alt="{{ item.name }}" />
-            <h3 class="text-xl font-bold text-center">{{ item.name }} - ${{ item.price }}</h3>
+            <h3 class="text-xl font-bold text-center">{{ item.name }}  ${{ item.price }}</h3>
           </figure>
         </div>
 
@@ -76,7 +76,7 @@
                       <td class="text-xl my-2">{{ orderItem.name }}</td>
                       <td class="text-xl my-2">
                         <ng-container *ngIf="orderItem.price !== undefined && orderItem.quantity !== undefined">
-                          -${{ orderItem.price * orderItem.quantity }}
+                          ${{ orderItem.price * orderItem.quantity }}
                         </ng-container>
                       </td>
                     </tr>
