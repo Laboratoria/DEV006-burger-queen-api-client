@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit {
       // } else if (role === 'chef') {
       //   this.router.navigate(['./chef'])
       // }
+
         Swal.fire({
           icon: 'success',
           title: 'Inicio de sesion exitoso',

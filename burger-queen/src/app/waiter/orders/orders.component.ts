@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ProductsServiceService } from 'src/app/services/products-service.service';
-import { Observable } from 'rxjs';
 import { MenuItem } from 'src/app/interfaces/menuInterface';
 import Swal from 'sweetalert2';
 import { OrderProducts } from 'src/app/interfaces/order-products';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 @Component({
   selector: 'app-orders',
@@ -13,110 +13,14 @@ import { OrderProducts } from 'src/app/interfaces/order-products';
 
 export class OrdersComponent {
 
-menuItems: MenuItem[] = [
-  {
-    id: 0,
-    dateEntry: '',
-    name: 'Cafe americano',
-    image: 'cafe.png',
-    type: 'Desayuno',
-    price: 5,
-  },
-  {
-    id: 0,
-    dateEntry: '',
-    name: 'Cafe con leche',
-    image: 'cafe.png',
-    type: 'Desayuno',
-    price: 7,
-  },
-  {
-    id: 0,
-    dateEntry: '',
-    name: 'Sandwich de jamon y queso',
-    image: 'sandwich.png',
-    type: 'Desayuno',
-    price: 10,
-  },
-  {
-    id: 0,
-    dateEntry: '',
-    name: 'Jugo de frutas natural',
-    image: 'jugoImg.png',
-    type: 'Desayuno',
-    price: 7,
-  },
-  {
-    id: 0,
-    dateEntry: '',
-    name: 'Hamburguesa Simple',
-    image: 'hamburguesa.png',
-    type: 'Almuerzo',
-    price: 10,
-  },
-  {
-    id: 0,
-    dateEntry: '',
-    name: 'Hamburguesa Doble',
-    image: 'hamburguesa.png',
-    type: 'Almuerzo',
-    price: 15,
-  },
-  {
-    id: 0,
-    dateEntry: '',
-    name: 'Papas Fritas',
-    image: 'papas.png',
-    type: 'Almuerzo',
-    price: 5,
-  },
-  {
-    id: 0,
-    dateEntry: '',
-    name: 'Aros de Cebolla',
-    image: 'aros-de-cebolla.png',
-    type: 'Almuerzo',
-    price: 5,
-  },
-  {
-    id: 0,
-    dateEntry: '',
-    name: 'Agua 500ml',
-    image: 'agua.png',
-    type: 'Almuerzo',
-    price: 5,
-  },
-  {
-    id: 0,
-    dateEntry: '',
-    name: 'Agua 750ml',
-    image: 'agua.png',
-    type: 'Almuerzo',
-    price: 7,
-  },
-  {
-    id: 0,
-    dateEntry: '',
-    name: 'Bebida Gaseosa 500ml',
-    image: 'soda.png',
-    type: 'Almuerzo',
-    price: 7,
-  },
-  {
-    id: 0,
-    dateEntry: '',
-    name: 'Bebida Gaseosa 750ml',
-    image: 'soda.png',
-    type: 'Almuerzo',
-    price: 10,
-  },
+  menuItems: MenuItem[] = [];
   
-];
-
-filteredItems: MenuItem[] = [];
+  constructor(public products: ProductsServiceService, private authService: AuthServiceService) { }
 
 showMenu(type: string) {
-  this.filteredItems = this.menuItems.filter(item => item.type === type);
+  this.products.getAllProducts().subscribe((data: MenuItem[]) => {
+    this.menuItems = data.filter(item => item.type === type);
+  })
 }
 
 orderItems: MenuItem[] = [];
@@ -133,6 +37,33 @@ addToOrderList(item: MenuItem){
     this.orderItems.push({...item, quantity: 1 });
   }
 }
+
+deleteProduct(item: MenuItem) {
+  console.log('se borro')
+  const existingItem = this.orderItems.find(orderItem => orderItem.name === item.name);
+  if(existingItem) {
+    if(existingItem.quantity && existingItem.quantity > 1) {
+      existingItem.quantity--;
+    } else {
+      const index = this.orderItems.indexOf(existingItem);
+      this.orderItems.splice(index, 1)
+    }
+  }
+  }
+  
+  addProduct(item: MenuItem) {
+    console.log('uno mas')
+    const existingItem = this.orderItems.find(orderItem => orderItem.name === item.name);
+    if(existingItem) {
+      if(existingItem.quantity) {
+        existingItem.quantity++;
+      } else {
+        existingItem.quantity=1;
+      }
+    } else {
+      this.orderItems.push({...item, quantity: 1 });
+    }
+  }
 
 calcularTotal() {
   return this.orderItems.reduce((total, item) => {
@@ -152,8 +83,8 @@ Swal.fire({
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
   cancelButtonColor: '#d33',
-  confirmButtonText: 'Si, la quiero cancelar',
-  cancelButtonText: 'No, no quiero cancelarla'
+  confirmButtonText: 'Si',
+  cancelButtonText: 'No'
 }).then((result) => {
   if (result.isConfirmed) {
     this.orderItems = [];
@@ -168,5 +99,13 @@ Swal.fire({
 
 enviarOrden(){
   console.log('se envio la orden')
+}
+
+verPedidos() {
+  console.log('aqui van los pedidos')
+}
+
+logout() {
+  this.authService.logOut();
 }
 }

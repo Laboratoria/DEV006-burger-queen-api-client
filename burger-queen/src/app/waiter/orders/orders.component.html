@@ -11,26 +11,36 @@
         <button class="menu bg-custom-fa81aa h-20 w-48 rounded-md ml-3" (click)="showMenu('Almuerzo')">
           Almuerzo
         </button>
+
       </div>
-      <!-- Boton cerrar sesion -->    
+      
+      <!-- Boton cerrar sesion -->
+      <div class="cerrar flex justify-end ml-auto mr-11 mt-4" (click)="verPedidos()">
+        <button class="menu bg-custom-fa81aa h-20 w-48 rounded-md ml-3">
+          Pedidos
+        </button>
+
+        <button class="menu bg-custom-fa81aa h-16 w-16 rounded-md ml-3 " (click)="logout()">
+          <img class="w-10 m-auto" src="../../../assets/logOut.png" alt="cerrar sesion">
+        </button>
+      </div>
     </div>
 
     <main class="h-3/4 w-11/12 m-auto">
-      
+
       <!-- MENU DESAYUNO / ALMUERZO -->
 
       <div class="desyuno-container h-full flex flex-row">
         <div class="desayuno-items grid-container w-3/5 mr-5">
-          <figure class="desayuno-item p-1 bg-slate-200" *ngFor="let item of filteredItems"
-            (click)="addToOrderList(item)">
-            <img class="h-16 m-auto" [src]="'../../../assets/' + item.image" alt="{{ item.name }}" />
+          <figure class="desayuno-item p-1 bg-slate-200" *ngFor="let item of menuItems" (click)="addToOrderList(item)">
+            <img class="h-16 m-auto" src="{{ item.image }}" alt="{{ item.name }}" />
             <h3 class="text-xl font-bold text-center">{{ item.name }} - ${{ item.price }}</h3>
           </figure>
         </div>
 
         <!-- PEDIDO DEL CLIENTE -->
 
-        <div class="order-items flex justify-end bg-slate-200 w-2/5 h-full ml-auto p-3 ">
+        <div class="order-items flex justify-end bg-slate-200 w-2/5 h-full ml-auto p-2 ">
           <section class="flex flex-col w-full">
 
             <div class="mesa-cliente flex flex-row">
@@ -49,6 +59,7 @@
                 <thead>
                   <tr class="text-lg">
                     <th>QTY</th>
+                    <th> </th>
                     <th>PRODUCTO</th>
                     <th>PRECIO</th>
                   </tr>
@@ -57,11 +68,15 @@
                 <tbody>
                   <ng-container *ngFor="let orderItem of orderItems">
                     <tr>
-                      <td class="text-xl my-1">{{ orderItem.quantity }}</td>
-                      <td class="text-xl my-1">{{ orderItem.name }}</td>
-                      <td class="text-xl my-1">
+                      <td class="text-xl my-2">{{ orderItem.quantity }}</td>
+                      <td class="flex flex-row mt-2 mr-2">
+                      <img class="h-5 mr-3" src="../../../assets/menos1.png" alt="delete" (click)="deleteProduct(orderItem)">
+                      <img class="h-5 mr-2" src="../../../assets/mas.png" alt="add" (click)="addProduct(orderItem)">
+                    </td>
+                      <td class="text-xl my-2">{{ orderItem.name }}</td>
+                      <td class="text-xl my-2">
                         <ng-container *ngIf="orderItem.price !== undefined && orderItem.quantity !== undefined">
-                          - ${{ orderItem.price * orderItem.quantity }}
+                          -${{ orderItem.price * orderItem.quantity }}
                         </ng-container>
                       </td>
                     </tr>
@@ -75,7 +90,8 @@
             </div>
 
             <div class="flex flex-row justify-end">
-              <button class="cancelar-orden btn text-2xl font-bold bg-custom-dab5e1 w-32 h-16 mr-10" (click)="cancelarOrden()">
+              <button class="cancelar-orden btn text-2xl font-bold bg-custom-dab5e1 w-32 h-16 mr-10"
+                (click)="cancelarOrden()">
                 Cancelar
               </button>
               <button class="btn text-2xl font-bold bg-custom-b3ebe4 w-32 h-16" (click)="enviarOrden()">
