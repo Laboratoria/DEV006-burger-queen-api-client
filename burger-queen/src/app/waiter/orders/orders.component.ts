@@ -1,21 +1,22 @@
 import { Component } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { ProductsServiceService } from 'src/app/services/products-service.service';
 import { MenuItem } from 'src/app/interfaces/menuInterface';
 import Swal from 'sweetalert2';
-import { OrderProducts } from 'src/app/interfaces/order-products';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.css']
+  styleUrls: ['./orders.component.css'],
+  providers: [DatePipe]
 })
 
 export class OrdersComponent {
 
   menuItems: MenuItem[] = [];
   
-  constructor(public products: ProductsServiceService, private authService: AuthServiceService) { }
+  constructor(public products: ProductsServiceService, private authService: AuthServiceService, private date: DatePipe) { }
 
 showMenu(type: string) {
   this.products.getAllProducts().subscribe((data: MenuItem[]) => {
