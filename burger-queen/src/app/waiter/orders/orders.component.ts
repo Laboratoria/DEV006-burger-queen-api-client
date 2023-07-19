@@ -101,6 +101,10 @@ enviarOrden(){
   console.log('se envio la orden')
 }
 
+verPedidos() {
+  console.log('aqui van los pedidos')
+}
+
 logout() {
   this.authService.logOut();
 }

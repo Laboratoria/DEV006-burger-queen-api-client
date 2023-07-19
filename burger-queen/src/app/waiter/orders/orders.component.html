@@ -11,10 +11,15 @@
         <button class="menu bg-custom-fa81aa h-20 w-48 rounded-md ml-3" (click)="showMenu('Almuerzo')">
           Almuerzo
         </button>
-      </div>
 
+      </div>
+      
       <!-- Boton cerrar sesion -->
-      <div class="cerrar flex justify-end ml-auto mr-11 mt-4">
+      <div class="cerrar flex justify-end ml-auto mr-11 mt-4" (click)="verPedidos()">
+        <button class="menu bg-custom-fa81aa h-20 w-48 rounded-md ml-3">
+          Pedidos
+        </button>
+
         <button class="menu bg-custom-fa81aa h-16 w-16 rounded-md ml-3 " (click)="logout()">
           <img class="w-10 m-auto" src="../../../assets/logOut.png" alt="cerrar sesion">
         </button>
