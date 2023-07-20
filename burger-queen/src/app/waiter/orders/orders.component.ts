@@ -120,7 +120,7 @@ enviarOrden(){
   }
   if(!this.clientName || !this.mesaNumber) {
     console.error('No se agrego al cliente');
-    Swal.fire('Necesitas ingresar el nombre del cliente o numero de mesa');
+    Swal.fire('Necesitas ingresar el nombre del cliente y numero de mesa');
     return;
   }
   const order: Order = {
