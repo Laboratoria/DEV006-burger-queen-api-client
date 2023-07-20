@@ -5,4 +5,5 @@ export interface Order {
     products: MenuItem[];
     status: string;
     dateEntry: string;
+    mesa: string;
 }
