@@ -19,6 +19,9 @@ export class OrdersComponent {
 
   menuItems: MenuItem[] = [];
   orderItems: MenuItem[] = [];
+  clientName: string = '';
+  mesaNumber: string = '';
+  hasProduct: boolean = false;
   
   constructor(
     public products: ProductsServiceService,
@@ -45,6 +48,7 @@ addToOrderList(item: MenuItem){
   } else {
     this.orderItems.push({...item, quantity: 1 });
   }
+  this.hasProduct = this.orderItems.length > 0;
 }
 
 deleteProduct(item: MenuItem) {
@@ -58,6 +62,7 @@ deleteProduct(item: MenuItem) {
       this.orderItems.splice(index, 1)
     }
   }
+  this.hasProduct = this.orderItems.length > 0;
   }
   
   addProduct(item: MenuItem) {
@@ -72,6 +77,7 @@ deleteProduct(item: MenuItem) {
     } else {
       this.orderItems.push({...item, quantity: 1 });
     }
+    this.hasProduct = this.orderItems.length > 0;
   }
 
 calcularTotal() {
@@ -107,9 +113,19 @@ Swal.fire({
 }
 
 enviarOrden(){
-  console.log('se envio la orden')
+  if(!this.hasProduct) {
+    console.error('No hay productos');
+    Swal.fire('No es posible enviar una orden vacia');
+    return;
+  }
+  if(!this.clientName || !this.mesaNumber) {
+    console.error('No se agrego al cliente');
+    Swal.fire('Necesitas ingresar el nombre del cliente y numero de mesa');
+    return;
+  }
   const order: Order = {
-    client: '',
+    client: this.clientName,
+    mesa: this.mesaNumber,
     products: this.orderItems.map(item => {
       return {
         id: item.id,
@@ -131,6 +147,8 @@ enviarOrden(){
     (res) => {
       console.log('Orden enviada', res);
       this.orderItems = [];
+      this.clientName = '';
+      this.mesaNumber = '';
       Swal.fire('Éxito', 'La orden ha sido enviada.', 'success');
     },
     (error) => {
@@ -148,11 +166,3 @@ logout() {
   this.authService.logOut();
 }
 }
-
-
-// idUser = this.storage.getIdUser();
-
-// createOrder(clientName: string){
-//   const date = new Date();
-//   const 
-// }
