@@ -24,7 +24,11 @@ enviarOrden(order: Order, token: string): Observable<any> {
 }
 
 getOrderById(orderId: number): Observable<Order> {
-  return this.http.get<Order>(`${this.ordersUrl}/${orderId}`)
+  const token = this.storage.getToken();
+  const headers = new HttpHeaders({
+    Authorization: 'Bearer ' + token
+  })
+  return this.http.get<Order>(`${this.ordersUrl}/${orderId}`, { headers })
 }
 
 getPendingOrders(): Observable<Order[]> {
@@ -33,6 +37,18 @@ getPendingOrders(): Observable<Order[]> {
     Authorization: 'Bearer ' + token
   })
   return this.http.get<Order[]>(this.ordersUrl, { headers })
+}
+
+
+updateOrderStatus(orderId: number, newStatus: string): Observable<any> {
+  const token = this.storage.getToken();
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer' + token
+  });
+  const body = { status: newStatus };
+  const url = `${this.ordersUrl}/${orderId}`;
+  return this.http.patch(url, body, {headers})
 }
 
 }

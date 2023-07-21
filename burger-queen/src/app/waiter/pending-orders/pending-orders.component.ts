@@ -46,12 +46,16 @@ export class PendingOrdersComponent implements OnInit {
       verPedido(order: Order) {
         this.ordersService.getOrderById(order.id).subscribe(
           (fullOrder: Order) => {
-            this.router.navigate(['./waiter/pending', order.id, { order: fullOrder }]);
+            // this.router.navigate(['./waiter/pending/details', order.id], { state: { order: fullOrder }});
           },
           (error) => {
             console.error('Error al obtener el pedido completo:', error);
             Swal.fire('Error', 'No se pudo cargar el pedido completo.', 'error');
           }
         )
+      }
+
+      marcarEntregado() {
+        console.log('Se entrego')
       }
     }
