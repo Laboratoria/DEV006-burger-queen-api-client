@@ -19,7 +19,12 @@ export class LocalStorageService {
     return localStorage.getItem('user-rol')
   }
 
-  getToken(): string | null {
-    return localStorage.getItem('token')
+  // getToken(): string | null {
+  //   return localStorage.getItem('token')
+  // }
+
+  getToken(): string {
+    const token = localStorage.getItem('token');
+    return token ? token : ''
   }
 }

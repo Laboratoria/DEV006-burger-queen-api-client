@@ -7,6 +7,11 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'orders',
+    pathMatch: 'full'
+  },
+  {
+    path: 'orders',
     component: OrdersComponent
   },
   {
@@ -14,7 +19,7 @@ const routes: Routes = [
     component: PendingOrdersComponent
   },
   {
-    path: 'details',
+    path: 'pending/details/:id',
     component: OrderDetailsComponent
   }
 ];

@@ -4,13 +4,23 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
   }
 
+  .horizontal-scroll {
+    overflow-x: auto;
+    max-height: calc(100vh - 180px);
+  }
+
   .card-container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 24px;
+    /* overflow-x: scroll; */
+    /* max-height: calc(100vh - 180px); */
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1px;
   }
 
   .card {
-    width: 100%;
-    height: 150px;
+    width: 320px;
+    height: auto;
+    scroll-snap-align: start;
   }
