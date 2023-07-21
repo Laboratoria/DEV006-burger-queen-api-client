@@ -1,10 +1,11 @@
-<body>
-  <section class="h-screen">
-    <div class="flex flex-row">
-      <img class="h-40 ml-10 mt-3" src="../../../assets/LogoBQ.png" alt="burger queen" />
+<body class="h-screen">
+  <app-header></app-header>
+  <section class="h-5/6">
+    <div class="flex flex-row mx-11">
+      <!-- <img class="h-40 ml-10 mt-3" src="../../../assets/LogoBQ.png" alt="burger queen" /> -->
 
-      <div class="btns mt-4">
-        <button class="menu bg-custom-fa81aa h-20 w-48 rounded-md ml-16" (click)="showMenu('Desayuno')">
+      <div class="btns mt-2">
+        <button class="menu bg-custom-fa81aa h-20 w-48 rounded-md" (click)="showMenu('Desayuno')">
           Desayuno
         </button>
 
@@ -15,22 +16,22 @@
       </div>
       
       <!-- Boton cerrar sesion -->
-      <div class="cerrar flex justify-end ml-auto mr-11 mt-4" (click)="verPedidos()">
-        <button class="menu bg-custom-fa81aa h-20 w-48 rounded-md ml-3">
+      <div class="cerrar flex justify-end ml-auto mt-2" (click)="verPedidos()">
+        <button class="menu bg-custom-fa81aa h-20 w-48 rounded-md">
           Pedidos
         </button>
 
-        <button class="menu bg-custom-fa81aa h-16 w-16 rounded-md ml-3 " (click)="logout()">
+        <!-- <button class="menu bg-custom-fa81aa h-16 w-16 rounded-md ml-3 " (click)="logout()">
           <img class="w-10 m-auto" src="../../../assets/logOut.png" alt="cerrar sesion">
-        </button>
+        </button> -->
       </div>
     </div>
 
-    <main class="h-3/4 w-11/12 m-auto">
+    <main class="h-5/6 w-full m-auto px-11">
 
       <!-- MENU DESAYUNO / ALMUERZO -->
 
-      <div class="desyuno-container h-full flex flex-row">
+      <div class="desyuno-container h-full flex flex-row mt-4">
         <div class="desayuno-items grid-container w-3/5 mr-5">
           <figure class="desayuno-item p-1 bg-slate-200" *ngFor="let item of menuItems" (click)="addToOrderList(item)">
             <img class="h-16 m-auto" src="{{ item.image }}" alt="{{ item.name }}" />
@@ -40,7 +41,7 @@
 
         <!-- PEDIDO DEL CLIENTE -->
 
-        <div class="order-items flex justify-end bg-slate-200 w-2/5 h-full ml-auto p-2 ">
+        <div class="order-items flex justify-end bg-slate-200 w-2/5 h-full ml-auto p-3 ">
           <section class="flex flex-col w-full">
 
             <div class="mesa-cliente flex flex-row">

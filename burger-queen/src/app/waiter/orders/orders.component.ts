@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ProductsServiceService } from 'src/app/services/products-service.service';
 import { MenuItem } from 'src/app/interfaces/menuInterface';
-import Swal from 'sweetalert2';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { OrdersServiceService } from 'src/app/services/orders-service.service';
 import { Order } from 'src/app/interfaces/orderInterface';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-orders',
@@ -28,7 +29,8 @@ export class OrdersComponent {
     private authService: AuthServiceService,
     private date: DatePipe,
     private storage: LocalStorageService,
-    private ordersService: OrdersServiceService
+    private ordersService: OrdersServiceService,
+    private router: Router,
     ) { }
 
 showMenu(type: string) {
@@ -160,6 +162,7 @@ enviarOrden(){
 
 verPedidos() {
   console.log('aqui van los pedidos')
+  this.router.navigate(['./waiter/pending'])
 }
 
 logout() {
