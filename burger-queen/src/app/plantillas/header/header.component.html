@@ -1,19 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <img class="w-24 ml-10 mt-3" src="../../../assets/LogoBQ.png" alt="burger queen">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Menu</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Ordenes pendientes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Cerrar Sesion</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<header class="header h-16 w-auto m-0 px-11 bg-custom-dab5e1 flex">
+  <!-- <img src="https://i.postimg.cc/nrJbHsDb/waiter.png" *ngIf="role === 'waiter'" class="icon-user"> -->
+  <!-- <img src="https://i.postimg.cc/prJNy2f9/chef.png" *ngIf="role === 'chef'" class="icon-user"> -->
+  <img ngClass="mr-3" src="../../../assets/LogoBQ.png" *ngIf="role === 'admin'" class="icon-user">
+  <div class="containerInfo">
+      <p class="email-user font-bold text-xl">{{ email }}</p>
+      <p class="role-user text-lg">{{ role }}</p>
+  </div>
+  <div class="flex justify-end ml-auto">
+    <button class="logOut h-16 w-16 rounded-md " (click)="logout()">
+      <img class="w-10 m-auto" src="../../../assets/logOut.png" alt="cerrar sesion">
+    </button>
+  </div>
+</header>
