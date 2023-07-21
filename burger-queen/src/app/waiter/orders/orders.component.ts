@@ -7,6 +7,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { OrdersServiceService } from 'src/app/services/orders-service.service';
 import { Order } from 'src/app/interfaces/orderInterface';
 import { Router } from '@angular/router';
+import { OrdersFnService } from 'src/app/services/orders-fn.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -30,6 +31,7 @@ export class OrdersComponent {
     private date: DatePipe,
     private storage: LocalStorageService,
     private ordersService: OrdersServiceService,
+    private totalCalculator: OrdersFnService,
     private router: Router,
     ) { }
 
@@ -82,15 +84,18 @@ deleteProduct(item: MenuItem) {
     this.hasProduct = this.orderItems.length > 0;
   }
 
-calcularTotal() {
-  return this.orderItems.reduce((total, item) => {
-    if(item.quantity) {
-      return total + (item.price * item.quantity);
-    } else {
-      return total;
-    }
-  }, 0)
-}
+  calcularTotal() {
+    return this.totalCalculator.calcularTotal(this.orderItems);
+  }
+// calcularTotal() {
+//   return this.orderItems.reduce((total, item) => {
+//     if(item.quantity) {
+//       return total + (item.price * item.quantity);
+//     } else {
+//       return total;
+//     }
+//   }, 0)
+// }
 
 cancelarOrden(){
 console.log('hiciste click en cancelar')
@@ -128,6 +133,7 @@ enviarOrden(){
   const order: Order = {
     client: this.clientName,
     mesa: this.mesaNumber,
+    id: 0,
     products: this.orderItems.map(item => {
       return {
         id: item.id,

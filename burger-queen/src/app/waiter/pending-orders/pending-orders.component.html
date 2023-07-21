@@ -1,14 +1,34 @@
 <body class="h-screen">
   <app-header></app-header>
-  <section >
-      <!-- Cat -->
-        <div class="cat flex justify-center mb-8">
-            <img class="w-1/5" src="../../assets/pop-cat.gif" alt="Cat gif" />
-          </div>
-          <div class="flex justify-center items-center">
-            <div class="text-center bg-black bg-opacity-85 border-3 border-white rounded w-3/5 py-4">
-              <h1 class="text-white text-8xl mb-3">Aqui van las ordenes pendientes </h1>
-            </div>
-          </div>
-    </section>
+  <section class="px-11 py-4">
+    <h1 class="text-4xl text-white font-bold mb-3">Ordenes Pendientes:</h1>
+    <div class="card-container ">
+      <div class="card p-1 bg-custom-dab5e1" *ngFor="let order of pendingOrders" (click)="verPedido(order)">
+        
+        <div class="text-lg font-semibold">
+          <strong class="text-xl font-bold">Id:</strong> {{ order.id }}
+        </div>
+
+        <div class="text-lg font-semibold">
+          <strong class="text-xl font-bold">Cliente:</strong> {{ order.client }}
+        </div>
+
+        <div class="text-lg font-semibold">
+          <strong class="text-xl font-bold">Mesa:</strong> {{ order.mesa }}
+        </div>
+
+        <div class="text-lg font-semibold">
+          <strong class="text-xl font-bold">Total:</strong> {{ calcularTotal(order.products) | currency:'USD':'symbol':'1.2-2' }}
+        </div>
+
+        <div class="text-lg font-semibold">
+          <strong class="text-xl font-bold"></strong> {{ order.dateEntry }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div *ngIf="pendingOrders.length === 0">
+    <p>No hay ordenes pendientes</p>
+  </div>
 </body>
