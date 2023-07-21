@@ -58,4 +58,9 @@ export class PendingOrdersComponent implements OnInit {
       marcarEntregado() {
         console.log('Se entrego')
       }
+
+      volver() {
+        console.log('menu')
+        this.router.navigate(['./waiter'])
+      }
     }
