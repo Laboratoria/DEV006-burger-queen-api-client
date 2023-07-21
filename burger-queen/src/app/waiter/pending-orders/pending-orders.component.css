@@ -37,8 +37,5 @@ body {
 
   h1 {
     margin: 0; /* Elimina el margen predeterminado del párrafo */
-   /* Ajusta el tamaño de fuente según tus preferencias */
     -webkit-text-stroke: 4px black; /* Grosor y color del borde (Webkit y Safari) */
-    /* text-stroke: 2px black; Grosor y color del borde (estándar) */
-    
   }
