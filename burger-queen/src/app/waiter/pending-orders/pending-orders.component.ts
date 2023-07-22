@@ -58,7 +58,7 @@ export class PendingOrdersComponent implements OnInit {
 
       marcarEntregado(orderId: number) {
         Swal.fire({
-          title: 'Se entrego esta orden?',
+          title: 'Se entregó esta orden?',
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
@@ -68,20 +68,30 @@ export class PendingOrdersComponent implements OnInit {
         }).then((result) => {
           // this.loadPendingOrders();
           if (result.isConfirmed) {
-            this.pendingOrders = this.pendingOrders.map(order => {
-              if(order.id === orderId) {
-                return { ...order, status: 'delivered'};
+            this.ordersService.updateOrderStatus(orderId, 'delivered').subscribe(
+              response => {
+                console.log('La orden se ha marcado como entregada con éxito en el servidor.');
+                // Si la actualización en el servidor es exitosa, ahora actualizamos localmente la variable this.pendingOrders.
+                this.pendingOrders = this.pendingOrders.map(order => {
+                  if (order.id === orderId) {
+                    return { ...order, status: 'delivered' };
+                  }
+                  return order;
+                });
+                console.log(`Se entregó el pedido con ID: ${orderId}`);
+                Swal.fire(
+                  'Listo!',
+                  'La orden se ha entregado.',
+                  'success'
+                );
+              },
+              error => {
+                console.error('Error al marcar la orden como entregada en el servidor:', error);
+                // Manejar el error o mostrar un mensaje al usuario en caso de fallo.
               }
-              return order;
-            })
-            console.log(`Se entregó el pedido con ID: ${orderId}`);
-            Swal.fire(
-              'Listo!',
-              'La orden se ha entregado.',
-              'success'
-            )
+            );
           }
-        })
+        });
       }
 
       volver() {
@@ -89,3 +99,4 @@ export class PendingOrdersComponent implements OnInit {
         this.router.navigate(['./waiter'])
       }
     }
+
