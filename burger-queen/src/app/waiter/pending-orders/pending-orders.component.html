@@ -48,7 +48,7 @@
         </div>
 
         <button class="entregado-btn flex justify-end bg-custom-b3ebe4 p-2 mt-3 mr-3 ml-auto" *ngIf="order.status === 'pending'"
-          (click)="marcarEntregado()">Entregado</button>
+          (click)="marcarEntregado(order.id)">Entregado</button>
 
       </div>
     </div>
