@@ -8,11 +8,11 @@ import { OrdersFnService } from 'src/app/services/orders-fn.service';
 import { MenuItem } from 'src/app/interfaces/menuInterface';
 
 @Component({
-  selector: 'app-pending-orders',
-  templateUrl: './pending-orders.component.html',
-  styleUrls: ['./pending-orders.component.css']
+  selector: 'app-list-orders',
+  templateUrl: './list-orders.component.html',
+  styleUrls: ['./list-orders.component.css']
 })
-export class PendingOrdersComponent implements OnInit {
+export class ListOrdersComponent implements OnInit {
 
   pendingOrders: Order[] = [];
   isPending: boolean = true;
@@ -66,7 +66,6 @@ export class PendingOrdersComponent implements OnInit {
           confirmButtonText: 'Si',
           cancelButtonText: 'No'
         }).then((result) => {
-          // this.loadPendingOrders();
           if (result.isConfirmed) {
             this.ordersService.updateOrderStatus(orderId, 'delivered').subscribe(
               response => {
@@ -76,6 +75,7 @@ export class PendingOrdersComponent implements OnInit {
                   if (order.id === orderId) {
                     return { ...order, status: 'delivered' };
                   }
+                  this.loadPendingOrders();
                   return order;
                 });
                 console.log(`Se entregó el pedido con ID: ${orderId}`);

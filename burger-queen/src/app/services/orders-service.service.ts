@@ -12,43 +12,37 @@ import { LocalStorageService } from './local-storage.service';
 export class OrdersServiceService {
 
   private ordersUrl = 'http://localhost:8080/orders';
-  
+
   constructor(private http: HttpClient, private storage: LocalStorageService) { }
 
-enviarOrden(order: Order, token: string): Observable<any> {
-  const headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    Authorization: 'Bearer ' + token
-  });
-  return this.http.post(this.ordersUrl, order, {headers})
-}
+  private getHeaders(): HttpHeaders {
+    const token = this.storage.getToken();
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + token
+    })
+  }
 
-getOrderById(orderId: number): Observable<Order> {
-  const token = this.storage.getToken();
-  const headers = new HttpHeaders({
-    Authorization: 'Bearer ' + token
-  })
-  return this.http.get<Order>(`${this.ordersUrl}/${orderId}`, { headers })
-}
+  enviarOrden(order: Order): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.post(this.ordersUrl, order, { headers })
+  }
 
-getPendingOrders(): Observable<Order[]> {
-  const token = this.storage.getToken();
-  const headers = new HttpHeaders({
-    Authorization: 'Bearer ' + token
-  })
-  return this.http.get<Order[]>(this.ordersUrl, { headers })
-}
+  getOrderById(orderId: number): Observable<Order> {
+    const headers = this.getHeaders();
+    return this.http.get<Order>(`${this.ordersUrl}/${orderId}`, { headers })
+  }
+
+  getPendingOrders(): Observable<Order[]> {
+    const headers = this.getHeaders();
+    return this.http.get<Order[]>(this.ordersUrl, { headers })
+  }
 
 
-updateOrderStatus(orderId: number, newStatus: string): Observable<any> {
-  const token = this.storage.getToken();
-  const headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    Authorization: 'Bearer' + token
-  });
-  const body = { status: newStatus };
-  const url = `${this.ordersUrl}/${orderId}`;
-  return this.http.patch(url, body, {headers})
-}
-
+  updateOrderStatus(orderId: number, newStatus: string): Observable<any> {
+    const headers = this.getHeaders();
+    const body = { status: newStatus };
+    const url = `${this.ordersUrl}/${orderId}`;
+    return this.http.patch(url, body, { headers })
+  }
 }

@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { OrdersComponent } from './orders/orders.component';
-import { PendingOrdersComponent } from './pending-orders/pending-orders.component';
-import { OrderDetailsComponent } from './order-details/order-details.component';
+import { ListOrdersComponent } from './list-orders/list-orders.component';
 
 const routes: Routes = [
   {
@@ -16,12 +15,8 @@ const routes: Routes = [
   },
   {
     path: 'pending',
-    component: PendingOrdersComponent
+    component: ListOrdersComponent
   },
-  {
-    path: 'pending/details/:id',
-    component: OrderDetailsComponent
-  }
 ];
 
 @NgModule({

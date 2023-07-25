@@ -149,9 +149,9 @@ enviarOrden(){
     dateEntry: this.date.transform(new Date(), 'yyyy-MM-dd HH:mm:ss') ?? ''
   };
 
-  const token = this.storage.getToken() ?? '';
+  // const token = this.storage.getToken() ?? '';
 
-  this.ordersService.enviarOrden(order, token).subscribe(
+  this.ordersService.enviarOrden(order).subscribe(
     (res) => {
       console.log('Orden enviada', res);
       this.orderItems = [];
