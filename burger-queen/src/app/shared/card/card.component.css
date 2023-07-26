@@ -1,0 +1,23 @@
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-gap: 28px;
+    /* overflow-x: scroll; */
+    /* max-height: calc(100vh - 180px); */
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1px;
+  }
+  
+  .card {
+    width: 500px;
+    height: auto;
+    scroll-snap-align: start;
+    border: 4px solid #000000;
+  }
+
+  .btn, .entregado-btn {
+    font-size: 32px;
+    font-weight: bold;
+    font-family: 'Single Day', cursive;
+    border: 4px solid #000000;
+  }

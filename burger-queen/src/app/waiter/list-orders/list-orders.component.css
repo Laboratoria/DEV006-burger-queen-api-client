@@ -15,8 +15,6 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     grid-gap: 28px;
-    /* overflow-x: scroll; */
-    /* max-height: calc(100vh - 180px); */
     scroll-snap-type: x mandatory;
     padding-bottom: 1px;
   }
