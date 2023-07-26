@@ -1,12 +1,27 @@
-<body>
-    <section class="h-screen">
-        <div class="cat flex justify-center mb-8">
-            <img class="w-1/5" src="../../assets/pop-cat.gif" alt="Cat gif" />
-          </div>
-          <div class="flex justify-center items-center">
-            <div class="text-center bg-black bg-opacity-85 border-3 border-white rounded w-3/5 py-4">
-              <h1 class="text-white text-8xl mb-3">Hola, chef</h1>
-            </div>
-          </div>
-    </section>
+<body class="h-screen ">
+  <app-header></app-header>
+  <section class="px-11 py-4">
+
+    <div class="flex flex-row mb-3">
+      <h1 class="text-5xl text-white font-extrabold ">Ordenes Pendientes:</h1>
+    </div>
+
+
+    <div class="card-container text-xl horizontal-scroll">
+
+      <app-card
+      *ngFor="let order of pendingOrders"
+      [order]="order"
+      [showReadyButton]="false"
+      (markReady)="marcarPedidoListo(order.id)">
+    </app-card>
+
+    </div>
+
+
+  </section>
+
+  <div *ngIf="pendingOrders.length === 0">
+    <p>No hay ordenes pendientes</p>
+  </div>
 </body>

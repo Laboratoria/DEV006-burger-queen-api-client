@@ -9,48 +9,14 @@
 
 
     <div class="card-container text-xl horizontal-scroll">
-      <div class="card p-2 bg-custom-dab5e1" *ngFor="let order of pendingOrders" (click)="verPedido(order)">
 
-        <div class="flex flex-row mt-1 ml-3">
-          <div class="text-lg font-semibold mr-8">
-            <strong class="text-2xl font-bold">Id:</strong> {{ order.id }}
-          </div>
+      <app-card
+      *ngFor="let order of pendingOrders"
+      [order]="order"
+      [showReadyButton]="isChef"
+      (markReady)="marcarPedidoListo(order.id)">
+    </app-card>
 
-          <div class="text-xl font-semibold mr-8">
-            <strong class="text-2xl font-bold">Cliente:</strong> {{ order.client }}
-          </div>
-
-          <div class="text-xl font-semibold">
-            <strong class="text-2xl font-bold">Mesa:</strong> {{ order.mesa }}
-          </div>
-        </div>
-
-        <div class="text-xl font-semibold mt-3 ml-8">
-          <strong class="text-2xl font-bold">Productos:</strong>
-          <ul>
-            <li class="mt-2" *ngFor="let product of order.products">
-              {{ product.quantity }} - {{ product.name }}
-            </li>
-          </ul>
-        </div>
-
-        <div class="text-2xl font-bold mt-7 ml-3">
-          <strong class="text-2xl font-bold">Total:</strong> {{ calcularTotal(order.products) |
-          currency:'USD':'symbol':'1.2-2' }}
-        </div>
-
-        <div class="text-2xl font-semibold mt-3 ml-3">
-          <strong class="text-2xl font-bold"></strong> {{ order.status }}
-        </div>
-
-        <div class="text-2xl font-semibold mt-2 ml-3">
-          <strong></strong> {{ order.dateEntry }}
-        </div>
-
-        <button class="entregado-btn flex justify-end bg-custom-b3ebe4 p-2 mt-3 mr-3 ml-auto" *ngIf="order.status === 'pending'"
-          (click)="marcarEntregado(order.id)">Entregado</button>
-
-      </div>
     </div>
 
 

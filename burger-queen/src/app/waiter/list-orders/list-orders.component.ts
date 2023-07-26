@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { OrdersFnService } from 'src/app/services/orders-fn.service';
 import { MenuItem } from 'src/app/interfaces/menuInterface';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-list-orders',
@@ -14,20 +15,31 @@ import { MenuItem } from 'src/app/interfaces/menuInterface';
 })
 export class ListOrdersComponent implements OnInit {
 
+  isChef: boolean =false;
   pendingOrders: Order[] = [];
   isPending: boolean = true;
 
   constructor(
-    private authService: AuthServiceService,
     public ordersService: OrdersServiceService,
     private totalCalculator: OrdersFnService,
+    private storage: LocalStorageService,
     private router: Router
     ) { }
 
     ngOnInit(): void {
       this.loadPendingOrders();
+      this.checkUserRole();
+    }
+
+    private checkUserRole() {
+      const userRole = this.storage.getRoleUser()
+      this.isChef = userRole === 'chef'
     }
  
+    marcarPedidoListo(orderId: number) {
+      console.log('El pedido esta listo')
+    }
+
     loadPendingOrders() {
       this.ordersService.getPendingOrders().subscribe(
         (orders: Order[]) => {
@@ -42,18 +54,6 @@ export class ListOrdersComponent implements OnInit {
 
       calcularTotal(orderItems: MenuItem[]) {
         return this.totalCalculator.calcularTotal(orderItems);
-      }
-
-      verPedido(order: Order) {
-        this.ordersService.getOrderById(order.id).subscribe(
-          (fullOrder: Order) => {
-            // this.router.navigate(['./waiter/pending/details', order.id], { state: { order: fullOrder }});
-          },
-          (error) => {
-            console.error('Error al obtener el pedido completo:', error);
-            Swal.fire('Error', 'No se pudo cargar el pedido completo.', 'error');
-          }
-        )
       }
 
       marcarEntregado(orderId: number) {
