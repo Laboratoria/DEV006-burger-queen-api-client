@@ -26,6 +26,7 @@ export class StandbyOrdersComponent {
   ) { }
 
   ngOnInit(): void {
+    this.loadPendingOrders();
     this.checkUserRole();
   }
 

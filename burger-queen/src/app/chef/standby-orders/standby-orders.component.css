@@ -1,5 +1,39 @@
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech&family=Single+Day&display=swap');
+
 body {
     background-image: url('../../../assets/fondo80.png');
     background-size: cover;
     background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .horizontal-scroll {
+    overflow-x: auto;
+    max-height: calc(100vh - 220px);
+  }
+
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-gap: 28px;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1px;
+  }
+  
+  .card {
+    width: 500px;
+    height: auto;
+    scroll-snap-align: start;
+    border: 4px solid #000000;
+  }
+
+  .btn, .entregado-btn {
+    font-size: 32px;
+    font-weight: bold;
+    font-family: 'Single Day', cursive;
+    border: 4px solid #000000;
+  }
+
+  h1 {
+    margin: 0; /* Elimina el margen predeterminado del párrafo */
+    -webkit-text-stroke: 4px black; /* Grosor y color del borde (Webkit y Safari) */
   }
