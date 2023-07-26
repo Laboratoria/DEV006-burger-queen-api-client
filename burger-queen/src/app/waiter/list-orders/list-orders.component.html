@@ -13,7 +13,7 @@
       <app-card
       *ngFor="let order of pendingOrders"
       [order]="order"
-      [showReadyButton]="isChef"
+      [showReadyButton]="true"
       (markReady)="marcarPedidoListo(order.id)">
     </app-card>
 

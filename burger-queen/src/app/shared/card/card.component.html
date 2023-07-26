@@ -37,8 +37,16 @@
         <strong></strong> {{ order.dateEntry }}
       </div>
 
-      <button class="entregado-btn flex justify-end bg-custom-b3ebe4 p-2 mt-3 mr-3 ml-auto" *ngIf="showReadyButton"
+      <div *ngIf="order.status === 'delivered'" class="text-2xl font-semibold mt-2 ml-3">
+        <strong>Tiempo transcurrido:</strong> {{ getElapsedTime(order.dateEntry) }}
+      </div>
+
+      <button class="entregado-btn flex justify-end bg-custom-b3ebe4 p-2 mt-3 mr-3 ml-auto"  *ngIf="userRole === 'chef'"
         (click)="markOrderReady()">Pedido Listo</button>
+        
+        <button class="entregado-btn flex justify-end bg-custom-b3ebe4 p-2 mt-3 mr-3 ml-auto"  
+        (click)="markOrderDelivered()">Pedido Entregado</button>
+        <!-- *ngIf="userRole === 'waiter'" -->
 
     </div>
   </div>

@@ -17,6 +17,8 @@ export class StandbyOrdersComponent {
   isChef: boolean =false;
   pendingOrders: Order[] = [];
   isPending: boolean = true;
+  userRole: string = '';
+  slectedOrderId: number = -1;
 
   constructor(
     private totalCalculator: OrdersFnService,
@@ -37,6 +39,17 @@ export class StandbyOrdersComponent {
 
   marcarPedidoListo(orderId: number) {
     console.log('El pedido esta listo')
+    const now = new Date();
+    this.ordersService.updateOrderStatus(orderId, 'ready').subscribe(
+      () => {
+        this.loadPendingOrders();
+        Swal.fire('Listo', 'El pedido ha sido marcado como listo para entregar.', 'success');
+      },
+      (error) => {
+        console.error('Error al marcar el pedido como listo:', error);
+        Swal.fire('Error', 'No se pudo marcar el pedido como listo.', 'error');
+      }
+    )
   }
 
   loadPendingOrders() {
