@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { OrdersServiceService } from 'src/app/services/orders-service.service';
 import { Order } from 'src/app/interfaces/orderInterface';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { OrdersFnService } from 'src/app/services/orders-fn.service';
-import { MenuItem } from 'src/app/interfaces/menuInterface';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({

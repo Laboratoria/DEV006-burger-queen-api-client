@@ -3,7 +3,6 @@ import { EventEmitter, Input, Output } from '@angular/core';
 import { Order } from 'src/app/interfaces/orderInterface';
 import { OrdersFnService } from 'src/app/services/orders-fn.service';
 import { OrdersServiceService } from 'src/app/services/orders-service.service';
-import Swal from 'sweetalert2';
 import { MenuItem } from 'src/app/interfaces/menuInterface';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 

@@ -24,6 +24,13 @@
   </section>
 
   <div *ngIf="pendingOrders.length === 0">
-    <p>No hay ordenes pendientes</p>
+    <div class="cat flex justify-center mb-8">
+      <img class="w-1/3" src="../../../assets/pop-cat.gif" alt="Cat gif" />
+    </div>
+    <div class="flex justify-center items-center">
+      <div class="text-center bg-black bg-opacity-85 border-3 border-white rounded w-3/5 py-4">
+        <h2 class="text-white text-7xl">No hay ordenes pendientes</h2>
+      </div>
+    </div>
   </div>
 </body>
