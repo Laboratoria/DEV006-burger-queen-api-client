@@ -12,7 +12,9 @@ import Swal from 'sweetalert2';
 export class LoginComponent implements OnInit {
 
 
-  constructor(private authService: AuthServiceService, private router: Router) {
+  constructor(
+    private authService: AuthServiceService,
+    private router: Router) {
 
   }
 
@@ -56,6 +58,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('user-email', (res.user.email))
         localStorage.setItem('user-rol', (res.user.role))
         //Dependiendo el rol sera la ruta
+        
         this.router.navigate(['./waiter']);
 
       //   if (role === 'waiter') {
