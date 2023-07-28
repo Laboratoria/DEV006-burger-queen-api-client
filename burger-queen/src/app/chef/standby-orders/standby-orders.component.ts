@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { OrdersServiceService } from 'src/app/services/orders-service.service';
 import { Order } from 'src/app/interfaces/orderInterface';
-// import { DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
-import { OrdersFnService } from 'src/app/services/orders-fn.service';
 
 @Component({
   selector: 'app-standby-orders',
@@ -17,8 +15,6 @@ export class StandbyOrdersComponent {
 
   constructor(
     public ordersService: OrdersServiceService,
-    private totalCalculator: OrdersFnService,
-    // private date: DatePipe
   ) { }
 
   ngOnInit(): void {
@@ -68,5 +64,7 @@ export class StandbyOrdersComponent {
       }
     })
   }
+
+  
 
 }

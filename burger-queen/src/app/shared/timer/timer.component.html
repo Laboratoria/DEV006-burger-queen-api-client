@@ -1,0 +1,6 @@
+<div class="cronometro bg-white text-2xl text-black">
+    <h2>{{ formatearTiempo(tiempoTranscurrido) }}</h2>
+    <button class="btn btn-primary mr-5" (click)="startTimer()" [disabled]="isRunning">Iniciar</button>
+    <button class="btn btn-primary mr-5" (click)="stopTimer()" [disabled]="!isRunning">Detener</button>
+    <!-- <button class="btn btn-primary" (click)="resetTimer()">Reiniciar</button> -->
+</div>

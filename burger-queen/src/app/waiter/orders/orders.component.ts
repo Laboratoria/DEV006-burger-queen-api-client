@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Output, EventEmitter, Input } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ProductsServiceService } from 'src/app/services/products-service.service';
 import { MenuItem } from 'src/app/interfaces/menuInterface';
@@ -18,6 +19,8 @@ import Swal from 'sweetalert2';
 })
 
 export class OrdersComponent {
+
+  // @Output() startTimer: EventEmitter<number> = new EventEmitter<number>();
 
   menuItems: MenuItem[] = [];
   orderItems: MenuItem[] = [];
@@ -139,7 +142,7 @@ enviarOrden(){
     }),
     status: 'pending',
     dateEntry: this.date.transform(new Date(), 'yyyy-MM-dd HH:mm:ss') ?? '',
-    currentTime: ''
+    currentTime: 0
   };
 
   this.ordersService.enviarOrden(order).subscribe(
@@ -156,18 +159,6 @@ enviarOrden(){
       Swal.fire('Error', 'No se pudo enviar la orden.', 'error');
     }
   )
-}
-
-getElapsedTime(order: Order): string {
-  const timeObj = this.totalCalculator.calculateTime(order.dateEntry, order.currentTime ?? '');
-
-  // Formatear los valores para mostrarlos en la interfaz
-  const days = timeObj.days > 0 ? timeObj.days + 'd ' : '';
-  const hours = timeObj.hours > 0 ? timeObj.hours + 'h ' : '';
-  const minutes = timeObj.minutes > 0 ? timeObj.minutes + 'm ' : '';
-  const seconds = timeObj.seconds > 0 ? timeObj.seconds + 's' : '';
-
-  return days + hours + minutes + seconds;
 }
 
 verPedidos() {
