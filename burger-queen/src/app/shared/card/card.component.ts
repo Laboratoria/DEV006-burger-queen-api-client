@@ -21,16 +21,10 @@ readyOrders: Order[] = [];
  @Output() seeOrders: EventEmitter<number> = new EventEmitter<number>();
  @Output() orderDelivered: EventEmitter<number> = new EventEmitter<number>();
 
- userRole: string = '';
-
  constructor(
   private totalCalculator: OrdersFnService,
   public ordersService: OrdersServiceService,
-  private storage: LocalStorageService) { 
-    
-    this.userRole = this.storage.getRoleUser() || '';
-    
-  }
+  private storage: LocalStorageService) { }
   
   ngOnInit(): void {
     
