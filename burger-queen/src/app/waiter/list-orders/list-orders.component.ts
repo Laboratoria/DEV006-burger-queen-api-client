@@ -50,36 +50,6 @@ export class ListOrdersComponent implements OnInit {
     );
   }
 
-  marcarPedidoListo(orderId: number) { //chef
-    Swal.fire({
-      title: 'El pedido está listo?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si',
-      cancelButtonText: 'No'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        console.log('El pedido esta listo')
-        this.ordersService.updateOrderStatus(orderId, 'ready').subscribe(
-          (res) => {
-            console.log(res)
-            this.loadPendingOrders();
-            Swal.fire(
-              'Listo!',
-              'La orden se ha entregado.',
-              'success'
-            );
-          },
-          (error) => {
-            console.error(`Error marking the order as ready with id ${orderId}:`, error);
-          }
-        )
-      }
-    })
-  }
-
   marcarEntregado(orderId: number) { //waiter
     Swal.fire({
       title: 'Se entregó esta orden?',
