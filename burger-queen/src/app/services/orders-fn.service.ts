@@ -20,7 +20,26 @@ private pendingORders: Order[] = [];
     }, 0);
   }
 
-  removeOrder(orderId: number): void {
-    this.pendingORders = this.pendingORders.filter(order => order.id !== orderId)
+  calculateTime(date1: string, date2: string) {
+    const firstDate = new Date(date1);
+    const secondDate = new Date(date2);
+    const difMs = secondDate.getTime() - firstDate.getTime();
+
+    const sec = Math.floor(difMs / 1000);
+    const min = Math.floor(sec / 60);
+    const hrs = Math.floor(min / 60);
+    const days = Math.floor(hrs / 24);
+
+    const totalSec = sec % 60;
+    const totalMin = min % 60;
+    const totalHrs = hrs % 24;
+
+    return {
+      days: days,
+      hours: totalHrs,
+      minutes: totalMin,
+      seconds: totalSec
+    }
   }
+
 }

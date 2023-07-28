@@ -30,54 +30,25 @@ export class ListOrdersComponent implements OnInit {
 
     this.ordersService.getPendingOrders().subscribe(
       (orders: Order[]) => {
-        if (userRole === 'chef') {
-          this.pendingOrders = orders.filter(order => order.status === 'pending');
-        } else if (userRole === 'waiter') {
-          const pendingOrders = orders.filter(order => order.status === 'pending');
-          const readyOrders = orders.filter(order => order.status === 'ready');
-          this.pendingOrders = [...pendingOrders, ...readyOrders]
-        } else if (userRole === 'admin') {
-          const pendingOrders = orders.filter(order => order.status === 'pending');
-          const readyOrders = orders.filter(order => order.status === 'ready');
-          const deliveredOrders = orders.filter(order => order.status === 'delivered');
-          this.pendingOrders = [...pendingOrders, ...readyOrders, ...deliveredOrders]
-        }
+
+        this.pendingOrders = orders.filter(order => order.status === 'ready');
+
+        // if (userRole === 'waiter') {
+        //   const pendingOrders = orders.filter(order => order.status === 'pending');
+        //   const readyOrders = orders.filter(order => order.status === 'ready');
+        //   this.pendingOrders = [...pendingOrders, ...readyOrders]
+        // } else if (userRole === 'admin') {
+        //   const pendingOrders = orders.filter(order => order.status === 'pending');
+        //   const readyOrders = orders.filter(order => order.status === 'ready');
+        //   const deliveredOrders = orders.filter(order => order.status === 'delivered');
+        //   this.pendingOrders = [...pendingOrders, ...readyOrders, ...deliveredOrders]
+        // }
       },
       (error) => {
         console.error('Error al obtener las órdenes pendientes:', error);
         Swal.fire('Error', 'No se pudieron cargar las órdenes pendientes.', 'error');
       }
     );
-  }
-
-  marcarPedidoListo(orderId: number) { //chef
-    Swal.fire({
-      title: 'El pedido está listo?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si',
-      cancelButtonText: 'No'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        console.log('El pedido esta listo')
-        this.ordersService.updateOrderStatus(orderId, 'ready').subscribe(
-          (res) => {
-            console.log(res)
-            this.loadPendingOrders();
-            Swal.fire(
-              'Listo!',
-              'La orden se ha entregado.',
-              'success'
-            );
-          },
-          (error) => {
-            console.error(`Error marking the order as ready with id ${orderId}:`, error);
-          }
-        )
-      }
-    })
   }
 
   marcarEntregado(orderId: number) { //waiter
