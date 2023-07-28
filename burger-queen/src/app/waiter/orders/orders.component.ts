@@ -88,15 +88,6 @@ deleteProduct(item: MenuItem) {
     return this.totalCalculator.calcularTotal(this.orderItems);
   }
   
-// calcularTotal() {
-//   return this.orderItems.reduce((total, item) => {
-//     if(item.quantity) {
-//       return total + (item.price * item.quantity);
-//     } else {
-//       return total;
-//     }
-//   }, 0)
-// }
 
 cancelarOrden(){
 console.log('hiciste click en cancelar')
@@ -147,10 +138,9 @@ enviarOrden(){
       };
     }),
     status: 'pending',
-    dateEntry: this.date.transform(new Date(), 'yyyy-MM-dd HH:mm:ss') ?? ''
+    dateEntry: this.date.transform(new Date(), 'yyyy-MM-dd HH:mm:ss') ?? '',
+    currentTime: ''
   };
-
-  // const token = this.storage.getToken() ?? '';
 
   this.ordersService.enviarOrden(order).subscribe(
     (res) => {
@@ -158,6 +148,7 @@ enviarOrden(){
       this.orderItems = [];
       this.clientName = '';
       this.mesaNumber = '';
+      order.dateEntry = res.dateEntry;
       Swal.fire('Éxito', 'La orden ha sido enviada.', 'success');
     },
     (error) => {
@@ -165,6 +156,18 @@ enviarOrden(){
       Swal.fire('Error', 'No se pudo enviar la orden.', 'error');
     }
   )
+}
+
+getElapsedTime(order: Order): string {
+  const timeObj = this.totalCalculator.calculateTime(order.dateEntry, order.currentTime ?? '');
+
+  // Formatear los valores para mostrarlos en la interfaz
+  const days = timeObj.days > 0 ? timeObj.days + 'd ' : '';
+  const hours = timeObj.hours > 0 ? timeObj.hours + 'h ' : '';
+  const minutes = timeObj.minutes > 0 ? timeObj.minutes + 'm ' : '';
+  const seconds = timeObj.seconds > 0 ? timeObj.seconds + 's' : '';
+
+  return days + hours + minutes + seconds;
 }
 
 verPedidos() {

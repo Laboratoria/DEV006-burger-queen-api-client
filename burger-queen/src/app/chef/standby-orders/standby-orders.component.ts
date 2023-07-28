@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { OrdersFnService } from 'src/app/services/orders-fn.service';
 import { OrdersServiceService } from 'src/app/services/orders-service.service';
 import { Order } from 'src/app/interfaces/orderInterface';
-import { MenuItem } from 'src/app/interfaces/menuInterface';
+// import { DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
+import { OrdersFnService } from 'src/app/services/orders-fn.service';
 
 @Component({
   selector: 'app-standby-orders',
@@ -19,8 +17,8 @@ export class StandbyOrdersComponent {
 
   constructor(
     public ordersService: OrdersServiceService,
-    private storage: LocalStorageService,
-    private router: Router
+    private totalCalculator: OrdersFnService,
+    // private date: DatePipe
   ) { }
 
   ngOnInit(): void {
@@ -51,6 +49,7 @@ export class StandbyOrdersComponent {
       cancelButtonText: 'No'
     }).then((result) => {
       if (result.isConfirmed) {
+
         console.log('El pedido esta listo')
         this.ordersService.updateOrderStatus(orderId, 'ready').subscribe(
           (res) => {
@@ -69,4 +68,5 @@ export class StandbyOrdersComponent {
       }
     })
   }
+
 }

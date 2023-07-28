@@ -13,7 +13,8 @@
       *ngFor="let order of pendingOrders"
       [order]="order"
       (markReady)="marcarPedidoListo(order.id)"
-      (seeOrders)="loadPendingOrders()">
+      (seeOrders)="loadPendingOrders()"
+      >
     </app-card>
 
     </div>

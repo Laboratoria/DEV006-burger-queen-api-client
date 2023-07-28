@@ -19,6 +19,7 @@ readyOrders: Order[] = [];
  @Output() markReady: EventEmitter<number> = new EventEmitter<number>();
  @Output() seeOrders: EventEmitter<number> = new EventEmitter<number>();
  @Output() orderDelivered: EventEmitter<number> = new EventEmitter<number>();
+//  @Output() timer: EventEmitter<number> = new EventEmitter<number>();
 
  constructor(
   private totalCalculator: OrdersFnService,
