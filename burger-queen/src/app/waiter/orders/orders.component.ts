@@ -87,6 +87,7 @@ deleteProduct(item: MenuItem) {
   calcularTotal() {
     return this.totalCalculator.calcularTotal(this.orderItems);
   }
+  
 // calcularTotal() {
 //   return this.orderItems.reduce((total, item) => {
 //     if(item.quantity) {

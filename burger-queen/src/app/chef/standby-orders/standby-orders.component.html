@@ -12,7 +12,6 @@
       <app-card
       *ngFor="let order of pendingOrders"
       [order]="order"
-      [showReadyButton]="false"
       (markReady)="marcarPedidoListo(order.id)">
     </app-card>
 

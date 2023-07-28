@@ -1,5 +1,5 @@
 <div class="card-container text-xl horizontal-scroll">
-    <div class="card p-2 bg-custom-dab5e1" (click)="verPedido(order)">
+    <div class="card p-2 bg-custom-dab5e1" (click)="loadOrders()">
 
       <div class="flex flex-row mt-1 ml-3">
         <div class="text-lg font-semibold mr-8">
@@ -30,22 +30,27 @@
       </div>
 
       <div class="text-2xl font-semibold mt-3 ml-3">
-        <strong class="text-2xl font-bold"></strong> {{ order.status }}
+        <strong class="text-2xl font-bold text-rose-500" *ngIf="order.status === 'pending'">En fila de preparación</strong>
+      </div>
+
+      <div class="text-2xl font-semibold mt-3 ml-3">
+        <strong class="text-2xl font-bold text-green-800" *ngIf="order.status === 'ready'">Pedido listo para entregar</strong>
+      </div>
+
+      <div class="text-2xl font-semibold mt-3 ml-3">
+        <strong class="text-2xl font-bold text-amber-600" *ngIf="order.status === 'delivered'">Pedido entregado</strong>
       </div>
 
       <div class="text-2xl font-semibold mt-2 ml-3">
         <strong></strong> {{ order.dateEntry }}
       </div>
 
-      <div *ngIf="order.status === 'delivered'" class="text-2xl font-semibold mt-2 ml-3">
-        <strong>Tiempo transcurrido:</strong> {{ getElapsedTime(order.dateEntry) }}
-      </div>
-
-      <button class="entregado-btn flex justify-end bg-custom-b3ebe4 p-2 mt-3 mr-3 ml-auto"  *ngIf="userRole === 'chef'"
-        (click)="markOrderReady()">Pedido Listo</button>
+      <button class="entregado-btn flex justify-end bg-custom-b3ebe4 p-2 mt-3 mr-3 ml-auto"  *ngIf="order.status === 'pending' "
+        (click)="markOrderReady(order.id)">Pedido Listo</button>
+        <!-- *ngIf="userRole === 'chef' " -->
         
-        <button class="entregado-btn flex justify-end bg-custom-b3ebe4 p-2 mt-3 mr-3 ml-auto"  
-        (click)="markOrderDelivered()">Pedido Entregado</button>
+        <button class="entregado-btn flex justify-end bg-custom-b3ebe4 p-2 mt-3 mr-3 ml-auto"  *ngIf="order.status === 'ready' "
+        (click)="markOrderDelivered(order.id)">Entregar Orden</button>
         <!-- *ngIf="userRole === 'waiter'" -->
 
     </div>

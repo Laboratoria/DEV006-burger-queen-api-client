@@ -21,29 +21,41 @@ export class ListOrdersComponent implements OnInit {
 
   constructor(
     public ordersService: OrdersServiceService,
-    private totalCalculator: OrdersFnService,
     private storage: LocalStorageService,
     private router: Router
     ) { }
 
     ngOnInit(): void {
       this.loadPendingOrders();
-      this.checkUserRole();
+      // this.checkUserRole();
     }
 
-    private checkUserRole() {
-      const userRole = this.storage.getRoleUser()
-      this.isChef = userRole === 'chef'
-    }
+    // private checkUserRole() {
+    //   const userRole = this.storage.getRoleUser()
+    //   this.isChef = userRole === 'chef'
+    // }
  
     marcarPedidoListo(orderId: number) {
       console.log('El pedido esta listo')
+      this.ordersService.updateOrderStatus(orderId, 'ready').subscribe(
+        (res) => {
+          console.log(res)
+          this.loadPendingOrders();
+          
+        },
+         (error) => {
+          console.error(`Error marking the order as ready with id ${orderId}:`, error);
+        }
+      )
     }
 
     loadPendingOrders() {
       this.ordersService.getPendingOrders().subscribe(
         (orders: Order[]) => {
-          this.pendingOrders = orders.filter(order => order.status === 'pending');
+          const pendingOrders = orders.filter(order => order.status === 'pending');
+          const readyOrders = orders.filter(order => order.status === 'ready');
+          const deliveredOrders = orders.filter(order => order.status === 'delivered');
+          this.pendingOrders = [...pendingOrders, ...readyOrders, ...deliveredOrders]
         },
         (error) => {
           console.error('Error al obtener las órdenes pendientes:', error);
@@ -52,9 +64,9 @@ export class ListOrdersComponent implements OnInit {
       );
       }
 
-      calcularTotal(orderItems: MenuItem[]) {
-        return this.totalCalculator.calcularTotal(orderItems);
-      }
+      // calcularTotal(orderItems: MenuItem[]) {
+      //   return this.totalCalculator.calcularTotal(orderItems);
+      // }
 
       marcarEntregado(orderId: number) {
         Swal.fire({

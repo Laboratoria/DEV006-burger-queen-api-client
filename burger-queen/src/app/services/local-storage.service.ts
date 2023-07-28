@@ -7,24 +7,24 @@ export class LocalStorageService {
 
   constructor() { }
 
-  getEmail(): string | null {
-    return localStorage.getItem('user-email')
+  getEmail(): string {
+    const email = localStorage.getItem('user-email')
+    return email ? email : ''
   }
 
-  getIdUser(): string | null{
-    return localStorage.getItem('user-id')
+  getIdUser(): string {
+    const idUser = localStorage.getItem('user-id')
+    return idUser ? idUser : ''
   }
 
-  getRoleUser(): string | null {
-    return localStorage.getItem('user-rol')
+  getRoleUser(): string {
+    const roleUser = localStorage.getItem('user-rol')
+    return roleUser ? roleUser : ''
   }
-
-  // getToken(): string | null {
-  //   return localStorage.getItem('token')
-  // }
 
   getToken(): string {
     const token = localStorage.getItem('token');
     return token ? token : ''
   }
+
 }
