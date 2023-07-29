@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { MenuItem } from '../interfaces/menuInterface';
 import { Order } from '../interfaces/orderInterface';
-import { OrderPending } from '../interfaces/orderInterface';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
@@ -13,7 +11,9 @@ export class OrdersServiceService {
 
   private ordersUrl = 'http://localhost:8080/orders';
 
-  constructor(private http: HttpClient, private storage: LocalStorageService) { }
+  constructor(
+    private http: HttpClient,
+    private storage: LocalStorageService) { }
 
   private getHeaders(): HttpHeaders {
     const token = this.storage.getToken();

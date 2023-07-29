@@ -1,12 +1,22 @@
-<header class="header h-20 w-auto m-0 px-11 pt-2 bg-custom-dab5e1 flex">
-    <img ngClass="mr-3" src="../../../assets/LogoBQ.png" class="icon-user">
-    <div class="containerInfo">
-        <p class="email-user font-bold text-xl">{{ email }}</p>
-        <p class="role-user text-lg">{{ role }}</p>
+<header class="header h-20 w-auto m-0 px-11 bg-custom-dab5e1 flex">
+    <img ngClass="mr-3" *ngIf="role === 'waiter'" src="../../../assets/camarera.png" class="icon-user">
+    <img ngClass="mr-3" *ngIf="role === 'chef'" src="../../../assets/cocinero.png" class="icon-user">
+    <img ngClass="mr-3" *ngIf="role === 'admin'" src="../../../assets/gerente.png" class="icon-user">
+
+    <div class="containerInfo my-auto text-black">
+        <p class="email-user font-bold text-2xl">{{ email }}</p>
+        <p class="role-user font-bold text-2xl">{{ role }}</p>
     </div>
-    <div class="flex justify-end ml-auto">
-      <button class="logOut h-16 w-16 rounded-md " (click)="logout()">
-        <img class="w-10 m-auto" src="../../../assets/logOut.png" alt="cerrar sesion">
-      </button>
+
+    <div class="logOut-container ml-auto flex flex-row">
+      <div class="fecha text-2xl font-bold text-black m-auto">
+        <p>{{ fecha }}</p>
+        <p>{{ hora }}</p>
+      </div>
+      <div class="flex justify-end pb-1 ml-20">
+        <button class="logOut h-16 w-16 rounded-md text-3xl font-extrabold m-auto" (click)="logout()">
+          Salir <img class="w-9 m-auto" src="../../../assets/logOut.png" alt="cerrar sesion">
+        </button>
+      </div>
     </div>
   </header>

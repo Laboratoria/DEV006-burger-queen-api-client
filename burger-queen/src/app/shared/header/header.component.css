@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech&family=Single+Day&display=swap');
+
+.logOut {
+    font-family: 'Single Day', cursive;
+    color: #000;
+}
+
+.containerInfo, .fecha  {
+    font-family: 'Share Tech', sans-serif;
+}

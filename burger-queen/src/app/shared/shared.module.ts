@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { SharedRoutingModule } from './shared-routing.module';
 import { CardComponent } from './card/card.component';
 import { HeaderComponent } from './header/header.component';
+import { TimerComponent } from './timer/timer.component';
 
 
 @NgModule({
   declarations: [
     CardComponent,
-    HeaderComponent
+    HeaderComponent,
+    TimerComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { HeaderComponent } from './header/header.component';
   ],
   exports: [
     CardComponent,
-    HeaderComponent
+    HeaderComponent,
+    TimerComponent
   ]
 })
 export class SharedModule { }

@@ -1,0 +1,12 @@
+<body class="bg-white">
+    
+    <div class="text-2xl font-semibold mt-2 ml-3">
+        <strong *ngIf="order.status === 'ready'">Tiempo de preparacion:</strong> {{formatearTiempo(tiempoTranscurrido)}}
+      </div>
+    
+      <button class="entregado-btn flex justify-end bg-custom-b3ebe4 p-2 mt-3 mr-3 ml-auto" 
+        (click)="markOrderReady(order.id)" (click)="stopTimer()">Pedido Listo</button>
+        <!-- *ngIf="userRole === 'chef' " -->
+        
+</body>
+

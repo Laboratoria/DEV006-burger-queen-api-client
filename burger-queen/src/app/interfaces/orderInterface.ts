@@ -7,7 +7,7 @@ export interface Order {
     status: string;
     dateEntry: string;
     mesa: string;
-    currentTime: any;
+    currentTime: number;
 }
 
 export interface OrderPending {

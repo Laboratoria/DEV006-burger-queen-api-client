@@ -1,5 +1,5 @@
 <div class="card-container text-xl horizontal-scroll">
-    <div class="card p-2 bg-custom-dab5e1" (click)="loadOrders()">
+    <div class="card p-2 bg-custom-dab5e1" >
 
       <div class="flex flex-row mt-1 ml-3">
         <div class="text-lg font-semibold mr-8">
@@ -46,11 +46,11 @@
       </div>
 
       <div class="text-2xl font-semibold mt-2 ml-3">
-        <strong *ngIf="order.status === 'ready'">Tiempo transcurrido:</strong> 
+        <strong *ngIf="order.status === 'ready'">Tiempo de preparacion:</strong> {{formatearTiempo(tiempoTranscurrido)}}
       </div>
 
       <button class="entregado-btn flex justify-end bg-custom-b3ebe4 p-2 mt-3 mr-3 ml-auto"  *ngIf="order.status === 'pending' "
-        (click)="markOrderReady(order.id)">Pedido Listo</button>
+        (click)="markOrderReady(order.id)" (click)="stopTimer()">Pedido Listo</button>
         <!-- *ngIf="userRole === 'chef' " -->
         
         <button class="entregado-btn flex justify-end bg-custom-b3ebe4 p-2 mt-3 mr-3 ml-auto"  *ngIf="order.status === 'ready' "
