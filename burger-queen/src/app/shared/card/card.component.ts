@@ -19,6 +19,7 @@ export class CardComponent implements OnInit, OnDestroy {
   @Output() seeOrders: EventEmitter<number> = new EventEmitter<number>();
   @Output() seeOrderschef: EventEmitter<number> = new EventEmitter<number>();
   @Output() orderDelivered: EventEmitter<number> = new EventEmitter<number>();
+  @Output() currentTimeUpdated: EventEmitter<number> = new EventEmitter<number>();
   //  @Output() timer: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(
@@ -27,10 +28,9 @@ export class CardComponent implements OnInit, OnDestroy {
 
   private timer: any;
   public tiempoTranscurrido: number = 0;
-  public isRunning: boolean = false;
 
   ngOnInit(): void {
-    // this.startTimer();
+    this.startTimer();
   }
   
   ngOnDestroy(): void {
@@ -44,21 +44,18 @@ export class CardComponent implements OnInit, OnDestroy {
   }
   
   startTimer() {
-    if (!this.isRunning) {
       this.tiempoTranscurrido = this.calculateTimeDifference();
       this.timer = setInterval(() => {
         this.tiempoTranscurrido++;
         // console.log('Inicio')
       }, 1000);
-    }
   }
 
   stopTimer() {
-    if (this.isRunning) {
-      this.isRunning = false;
       clearInterval(this.timer);
-      console.log('Se detuvo', this.timer)
-    }
+      this.currentTimeUpdated.emit(this.tiempoTranscurrido);
+      console.log('Se detuvo')
+
   }
 
   formatearTiempo(tiempo: number): string {
@@ -72,14 +69,6 @@ export class CardComponent implements OnInit, OnDestroy {
 
   dosDigitos(numero: number): string {
     return numero < 10 ? `0${numero}` : `${numero}`;
-  }
-
-  loadOrderschef() {
-    this.seeOrderschef
-  }
-
-  loadOrders() {
-    this.seeOrders
   }
 
   markOrderReady(orderId: number) {

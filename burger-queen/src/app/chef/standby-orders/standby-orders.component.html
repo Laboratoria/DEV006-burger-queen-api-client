@@ -16,6 +16,12 @@
       (seeOrders)="loadPendingOrders()"
       >
     </app-card>
+    
+    <!-- <app-timer
+    *ngFor="let order of pendingOrders"
+    [order]="order"
+    (markReady)="marcarPedidoListo(order.id)"
+    ></app-timer> -->
 
     </div>
 
