@@ -53,7 +53,7 @@ export class StandbyOrdersComponent {
             this.loadPendingOrders();
             Swal.fire(
               'Listo!',
-              'La orden se ha entregado.',
+              'La orden esta lista para entregar.',
               'success'
             );
           },
