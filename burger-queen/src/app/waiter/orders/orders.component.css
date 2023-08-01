@@ -13,20 +13,23 @@ body {
     height: 170px;
   }
 .menu{
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bold;
     font-family: 'Single Day', cursive;
     color: #000;
     border: 4px solid #000000;
+    border-radius: 15px;
 }
 .btn {
+  font-size: 30px;
     font-family: 'Single Day', cursive;
     color: #000;
     border: 4px solid #000000;
+    border-radius: 15px;
 }
 .orden{
-    /* border-radius: 50px; */
     border: 4px solid #000;
+
 }
 .input-cliente {
     border: 1px solid #000;

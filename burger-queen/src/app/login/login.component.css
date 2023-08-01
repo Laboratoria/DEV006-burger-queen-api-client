@@ -17,11 +17,12 @@ body {
     font-family: 'Single Day', cursive;
     color: #000;
     border: 4px solid #000;
+    border-radius: 20px;
     /* margin-left: 800px; */
   }
-  
-  .my-input :focus {
-    border-color: #ff0000;
+
+  .input {
+    border-radius: 10px;
   }
   
   ::placeholder {

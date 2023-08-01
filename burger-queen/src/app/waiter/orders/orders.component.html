@@ -5,11 +5,11 @@
       <!-- <img class="h-40 ml-10 mt-3" src="../../../assets/LogoBQ.png" alt="burger queen" /> -->
 
       <div class="btns mt-4">
-        <button class="menu bg-custom-fa81aa h-20 w-48 rounded-md" (click)="showMenu('Desayuno')">
+        <button class="menu bg-custom-b3ebe4 h-20 w-48 rounded-md" (click)="showMenu('Desayuno')">
           Desayuno
         </button>
 
-        <button class="menu bg-custom-fa81aa h-20 w-48 rounded-md ml-3" (click)="showMenu('Almuerzo')">
+        <button class="menu bg-custom-b3ebe4 h-20 w-48 rounded-md ml-3" (click)="showMenu('Almuerzo')">
           Almuerzo
         </button>
 
@@ -17,7 +17,7 @@
       
       <!-- Boton cerrar sesion -->
       <div class="cerrar flex justify-end ml-auto mt-4" (click)="verPedidos()">
-        <button class="menu bg-custom-fa81aa h-20 w-48 rounded-md">
+        <button class="menu bg-custom-b3ebe4 h-20 w-48 rounded-md">
           Pedidos
         </button>
 
@@ -41,7 +41,7 @@
         <div class="order-items flex justify-end bg-slate-100 w-5/12 h-full ml-auto p-3 ">
           <section class="flex flex-col w-full">
 
-            <div class="mesa-cliente flex flex-row">
+            <div class="mesa-cliente text-black flex flex-row">
               <div class="cliente flex flex-col w-full">
                 <label class="text-xl font-medium" for="cliente">Cliente:</label>
                 <input class="input-cliente w-full h-8 text-xl" type="text" placeholder="cliente" id="cliente" [(ngModel)]="clientName"/>
@@ -55,7 +55,7 @@
             <div class="pedido flex flex-col">
               <table class="mt-3">
                 <thead>
-                  <tr class="text-lg">
+                  <tr class="text-xl text-black font-semibold">
                     <th>QTY</th>
                     <th> </th>
                     <th>PRODUCTO</th>
@@ -82,17 +82,17 @@
                 </tbody>
               </table>
 
-              <div class="total mt-3 mb-2 text-2xl font-semibold">
+              <div class="text-black total mt-3 mb-2 text-2xl font-semibold">
                 Total: ${{ calcularTotal() }}
               </div>
             </div>
 
             <div class="flex flex-row justify-end">
-              <button class="cancelar-orden btn text-2xl font-bold bg-custom-dab5e1 w-32 h-16 mr-10"
+              <button class="cancelar-orden btn font-bold bg-custom-dab5e1 w-auto h-auto px-4 mr-10"
                 (click)="cancelarOrden()">
                 Cancelar
               </button>
-              <button class="btn text-2xl font-bold bg-custom-b3ebe4 w-32 h-16" (click)="enviarOrden()">
+              <button class="btn font-bold bg-custom-b3ebe4 w-auto h-auto px-4" (click)="enviarOrden()">
                 Enviar
               </button>
             </div>
