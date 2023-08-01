@@ -1,9 +1,9 @@
-<!-- <body class="h-screen "> -->
+
   <app-header></app-header>
   <section class="px-11 py-4">
 
     <div class="flex flex-row mb-3">
-      <h1 class="text-5xl text-white font-extrabold ">Pedidos en espera</h1>
+      <h1 class="text-5xl text-custom-dab5e1 font-extrabold ">Pedidos en espera</h1>
     </div>
 
 
@@ -16,12 +16,6 @@
       (seeOrders)="loadPendingOrders()"
       >
     </app-card>
-    
-    <!-- <app-timer
-    *ngFor="let order of pendingOrders"
-    [order]="order"
-    (markReady)="marcarPedidoListo(order.id)"
-    ></app-timer> -->
 
     </div>
 
@@ -30,5 +24,3 @@
       <p>No hay ordenes pendientes</p>
     </div>
   </section>
-
-<!-- </body> -->

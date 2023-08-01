@@ -1,8 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { OrdersServiceService } from 'src/app/services/orders-service.service';
 import { Order } from 'src/app/interfaces/orderInterface';
 import Swal from 'sweetalert2';
-import { CardComponent } from 'src/app/shared/card/card.component';
 
 @Component({
   selector: 'app-standby-orders',
@@ -10,8 +9,6 @@ import { CardComponent } from 'src/app/shared/card/card.component';
   styleUrls: ['./standby-orders.component.css']
 })
 export class StandbyOrdersComponent {
-
-  // @ViewChild(CardComponent) cardComponent!: CardComponent;
 
   pendingOrders: Order[] = [];
   isPending: boolean = true;
@@ -22,7 +19,6 @@ export class StandbyOrdersComponent {
 
   ngOnInit(): void {
     this.loadPendingOrders();
-    // this.cardComponent.startTimer();
   }
 
   loadPendingOrders() { //card

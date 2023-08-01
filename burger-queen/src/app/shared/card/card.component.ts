@@ -20,7 +20,6 @@ export class CardComponent implements OnInit, OnDestroy {
   @Output() seeOrderschef: EventEmitter<number> = new EventEmitter<number>();
   @Output() orderDelivered: EventEmitter<number> = new EventEmitter<number>();
   @Output() currentTimeUpdated: EventEmitter<number> = new EventEmitter<number>();
-  //  @Output() timer: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(
     private totalCalculator: OrdersFnService,
@@ -28,10 +27,14 @@ export class CardComponent implements OnInit, OnDestroy {
 
   private timer: any;
   public tiempoTranscurrido: number = 0;
-  public status: string = 'pending';
+
 
   ngOnInit(): void {
-
+    // debugger;
+    this.tiempoTranscurrido = this.calculateTimeDifference();
+    if(this.order.status !== 'ready') {
+      this.startTimer()
+    }
   }
   
   ngOnDestroy(): void {
@@ -45,13 +48,9 @@ export class CardComponent implements OnInit, OnDestroy {
   }
   
   startTimer() {
-    // if(this.status === 'pending') {
-      this.tiempoTranscurrido = this.calculateTimeDifference();
       this.timer = setInterval(() => {
         this.tiempoTranscurrido++;
-        // console.log('Inicio')
       }, 1000);
-    // }
   }
 
   stopTimer() {
