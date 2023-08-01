@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* body {
-    background-image: url('../src/assets/fonOp.png');
+body {
+    background-image: url('../src/assets/fondo80.png');
     background-size: cover;
     background-color: rgba(0, 0, 0, 0.5);
-  } */
+  }

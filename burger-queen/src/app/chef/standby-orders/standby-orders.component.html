@@ -1,4 +1,4 @@
-<body class="h-screen ">
+<!-- <body class="h-screen "> -->
   <app-header></app-header>
   <section class="px-11 py-4">
 
@@ -9,7 +9,7 @@
 
     <div class="card-container text-xl horizontal-scroll">
 
-      <app-card
+      <app-card 
       *ngFor="let order of pendingOrders"
       [order]="order"
       (markReady)="marcarPedidoListo(order.id)"
@@ -26,9 +26,9 @@
     </div>
 
 
+    <div *ngIf="pendingOrders.length === 0">
+      <p>No hay ordenes pendientes</p>
+    </div>
   </section>
 
-  <div *ngIf="pendingOrders.length === 0">
-    <p>No hay ordenes pendientes</p>
-  </div>
-</body>
+<!-- </body> -->

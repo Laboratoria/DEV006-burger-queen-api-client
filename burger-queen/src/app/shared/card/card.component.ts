@@ -28,9 +28,10 @@ export class CardComponent implements OnInit, OnDestroy {
 
   private timer: any;
   public tiempoTranscurrido: number = 0;
+  public status: string = 'pending';
 
   ngOnInit(): void {
-    this.startTimer();
+
   }
   
   ngOnDestroy(): void {
@@ -44,16 +45,18 @@ export class CardComponent implements OnInit, OnDestroy {
   }
   
   startTimer() {
+    // if(this.status === 'pending') {
       this.tiempoTranscurrido = this.calculateTimeDifference();
       this.timer = setInterval(() => {
         this.tiempoTranscurrido++;
         // console.log('Inicio')
       }, 1000);
+    // }
   }
 
   stopTimer() {
       clearInterval(this.timer);
-      this.currentTimeUpdated.emit(this.tiempoTranscurrido);
+      // this.currentTimeUpdated.emit(this.tiempoTranscurrido);
       console.log('Se detuvo')
 
   }
