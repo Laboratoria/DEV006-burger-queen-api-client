@@ -142,7 +142,7 @@ enviarOrden(){
     }),
     status: 'pending',
     dateEntry: this.date.transform(new Date(), 'yyyy-MM-dd HH:mm:ss') ?? '',
-    currentTime: 0
+    currentTime: 0,
   };
 
   this.ordersService.enviarOrden(order).subscribe(

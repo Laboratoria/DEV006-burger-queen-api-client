@@ -8,6 +8,7 @@ export interface Order {
     dateEntry: string;
     mesa: string;
     currentTime: number;
+    // tiempoTranscurrido: number;
 }
 
 export interface OrderPending {

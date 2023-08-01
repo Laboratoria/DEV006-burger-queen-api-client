@@ -1,10 +1,10 @@
-<body class="h-screen">
+
   <app-header></app-header>
   <section class="h-5/6">
     <div class="flex flex-row mx-11">
       <!-- <img class="h-40 ml-10 mt-3" src="../../../assets/LogoBQ.png" alt="burger queen" /> -->
 
-      <div class="btns mt-2">
+      <div class="btns mt-4">
         <button class="menu bg-custom-fa81aa h-20 w-48 rounded-md" (click)="showMenu('Desayuno')">
           Desayuno
         </button>
@@ -16,7 +16,7 @@
       </div>
       
       <!-- Boton cerrar sesion -->
-      <div class="cerrar flex justify-end ml-auto mt-2" (click)="verPedidos()">
+      <div class="cerrar flex justify-end ml-auto mt-4" (click)="verPedidos()">
         <button class="menu bg-custom-fa81aa h-20 w-48 rounded-md">
           Pedidos
         </button>
@@ -38,7 +38,7 @@
 
         <!-- PEDIDO DEL CLIENTE -->
 
-        <div class="order-items flex justify-end bg-slate-200 w-2/5 h-full ml-auto p-3 ">
+        <div class="order-items flex justify-end bg-slate-100 w-5/12 h-full ml-auto p-3 ">
           <section class="flex flex-col w-full">
 
             <div class="mesa-cliente flex flex-row">
@@ -104,4 +104,3 @@
 
     </main>
   </section>
-</body>
