@@ -45,4 +45,10 @@ export class OrdersServiceService {
     const url = `${this.ordersUrl}/${orderId}`;
     return this.http.patch(url, body, { headers })
   }
+
+  updateOrder(order: Order): Observable<any> {
+    const headers = this.getHeaders();
+    const url = `${this.ordersUrl}/${order.id}`;
+    return this.http.put(url,order, {headers});
+  }
 }

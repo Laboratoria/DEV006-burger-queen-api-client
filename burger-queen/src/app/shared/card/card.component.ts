@@ -32,6 +32,7 @@ export class CardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // debugger;
     this.tiempoTranscurrido = this.calculateTimeDifference();
+    this.order.currentTime = this.formatearTiempo(this.tiempoTranscurrido)
     if(this.order.status !== 'ready') {
       this.startTimer()
     }
@@ -41,24 +42,43 @@ export class CardComponent implements OnInit, OnDestroy {
     this.stopTimer();
   }
   
-  calculateTimeDifference():number {
-    const currentTimeInSeconds = Math.floor(Date.now() / 1000);
-    const dateEntryInSeconds = Math.floor(new Date(this.order.dateEntry).getTime() / 1000);
-    return currentTimeInSeconds - dateEntryInSeconds;
-  }
-  
   startTimer() {
       this.timer = setInterval(() => {
         this.tiempoTranscurrido++;
       }, 1000);
   }
 
+  updateCurrentTime() {
+    this.ordersService.updateOrder(this.order).subscribe(
+      (res) => {
+        console.log(res, "Actualizado")
+      }
+    )
+  }
+
   stopTimer() {
       clearInterval(this.timer);
-      // this.currentTimeUpdated.emit(this.tiempoTranscurrido);
       console.log('Se detuvo')
 
   }
+  calculateTimeDifference():number {
+    const currentTimeInSeconds = Math.floor(Date.now() / 1000);
+    const dateEntryInSeconds = Math.floor(new Date(this.order.dateEntry).getTime() / 1000);
+    return currentTimeInSeconds - dateEntryInSeconds;
+  }
+
+  // calculateTimeDifference(): { dias: number, horas: number, minutos: number, segundos: number } {
+  //   const currentTimeInSeconds = Math.floor(Date.now() / 1000);
+  //   const dateEntryInSeconds = Math.floor(new Date(this.order.dateEntry).getTime() / 1000);
+  //   const timeDifference = currentTimeInSeconds - dateEntryInSeconds;
+  
+  //   const dias = Math.floor(timeDifference / 86400);
+  //   const horas = Math.floor((timeDifference % 86400) / 3600);
+  //   const minutos = Math.floor((timeDifference % 3600) / 60);
+  //   const segundos = timeDifference % 60;
+  
+  //   return { dias, horas, minutos, segundos };
+  // }
 
   formatearTiempo(tiempo: number): string {
     const dias = Math.floor(tiempo / 86400);
@@ -75,11 +95,13 @@ export class CardComponent implements OnInit, OnDestroy {
 
   markOrderReady(orderId: number) {
     this.markReady.emit(orderId);
+    this.updateCurrentTime()
   }
 
 
   markOrderDelivered(orderId: number) {
     this.orderDelivered.emit(orderId)
+    this.updateCurrentTime()
   }
 
   calcularTotal(orderItems: MenuItem[]) {

@@ -6,4 +6,5 @@ export interface MenuItem {
     price: number;
     type: string;
     quantity?: number;
+    currentTime: number;
 }

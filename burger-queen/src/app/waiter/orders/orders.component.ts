@@ -136,7 +136,8 @@ enviarOrden(){
         image: item.image,
         type: item.type,
         dateEntry: item.dateEntry,
-        quantity: item.quantity
+        quantity: item.quantity,
+        currentTime: item.currentTime
       };
     }),
     status: 'pending',
