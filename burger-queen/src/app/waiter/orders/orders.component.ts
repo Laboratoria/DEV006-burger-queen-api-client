@@ -32,7 +32,6 @@ export class OrdersComponent {
     public products: ProductsServiceService,
     private authService: AuthServiceService,
     private date: DatePipe,
-    private storage: LocalStorageService,
     private ordersService: OrdersServiceService,
     private totalCalculator: OrdersFnService,
     private router: Router,
@@ -137,7 +136,8 @@ enviarOrden(){
         image: item.image,
         type: item.type,
         dateEntry: item.dateEntry,
-        quantity: item.quantity
+        quantity: item.quantity,
+        currentTime: item.currentTime
       };
     }),
     status: 'pending',

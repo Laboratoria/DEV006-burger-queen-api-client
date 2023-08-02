@@ -20,7 +20,6 @@ export class CardComponent implements OnInit, OnDestroy {
   @Output() seeOrderschef: EventEmitter<number> = new EventEmitter<number>();
   @Output() orderDelivered: EventEmitter<number> = new EventEmitter<number>();
   @Output() currentTimeUpdated: EventEmitter<number> = new EventEmitter<number>();
-  //  @Output() timer: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(
     private totalCalculator: OrdersFnService,
@@ -28,38 +27,58 @@ export class CardComponent implements OnInit, OnDestroy {
 
   private timer: any;
   public tiempoTranscurrido: number = 0;
-  public status: string = 'pending';
+
 
   ngOnInit(): void {
-
+    // debugger;
+    this.tiempoTranscurrido = this.calculateTimeDifference();
+    this.order.currentTime = this.formatearTiempo(this.tiempoTranscurrido)
+    if(this.order.status !== 'ready') {
+      this.startTimer()
+    }
   }
   
   ngOnDestroy(): void {
     this.stopTimer();
   }
   
+  startTimer() {
+      this.timer = setInterval(() => {
+        this.tiempoTranscurrido++;
+      }, 1000);
+  }
+
+  updateCurrentTime() {
+    this.ordersService.updateOrder(this.order).subscribe(
+      (res) => {
+        console.log(res, "Actualizado")
+      }
+    )
+  }
+
+  stopTimer() {
+      clearInterval(this.timer);
+      console.log('Se detuvo')
+
+  }
   calculateTimeDifference():number {
     const currentTimeInSeconds = Math.floor(Date.now() / 1000);
     const dateEntryInSeconds = Math.floor(new Date(this.order.dateEntry).getTime() / 1000);
     return currentTimeInSeconds - dateEntryInSeconds;
   }
+
+  // calculateTimeDifference(): { dias: number, horas: number, minutos: number, segundos: number } {
+  //   const currentTimeInSeconds = Math.floor(Date.now() / 1000);
+  //   const dateEntryInSeconds = Math.floor(new Date(this.order.dateEntry).getTime() / 1000);
+  //   const timeDifference = currentTimeInSeconds - dateEntryInSeconds;
   
-  startTimer() {
-    // if(this.status === 'pending') {
-      this.tiempoTranscurrido = this.calculateTimeDifference();
-      this.timer = setInterval(() => {
-        this.tiempoTranscurrido++;
-        // console.log('Inicio')
-      }, 1000);
-    // }
-  }
-
-  stopTimer() {
-      clearInterval(this.timer);
-      // this.currentTimeUpdated.emit(this.tiempoTranscurrido);
-      console.log('Se detuvo')
-
-  }
+  //   const dias = Math.floor(timeDifference / 86400);
+  //   const horas = Math.floor((timeDifference % 86400) / 3600);
+  //   const minutos = Math.floor((timeDifference % 3600) / 60);
+  //   const segundos = timeDifference % 60;
+  
+  //   return { dias, horas, minutos, segundos };
+  // }
 
   formatearTiempo(tiempo: number): string {
     const dias = Math.floor(tiempo / 86400);
@@ -67,20 +86,24 @@ export class CardComponent implements OnInit, OnDestroy {
     const minutos = Math.floor((tiempo % 3600) / 60);
     const segundos = tiempo % 60;
 
-    return `${this.dosDigitos(dias)}:${this.dosDigitos(horas)}:${this.dosDigitos(minutos)}:${this.dosDigitos(segundos)}`;
-  }
+    const days = dias > 0 ? `${dias}d ` : '';
+    const hrs = horas > 0 ? `${horas}h ` : '';
+    const mins = minutos > 0 ? `${minutos}m ` : '';
+    const secs = segundos > 0 ? `${segundos}s` : '';
 
-  dosDigitos(numero: number): string {
-    return numero < 10 ? `0${numero}` : `${numero}`;
+
+    return `${days}${hrs}${mins}${secs}`;
   }
 
   markOrderReady(orderId: number) {
     this.markReady.emit(orderId);
+    this.updateCurrentTime()
   }
 
 
   markOrderDelivered(orderId: number) {
     this.orderDelivered.emit(orderId)
+    this.updateCurrentTime()
   }
 
   calcularTotal(orderItems: MenuItem[]) {

@@ -1,12 +1,28 @@
 <section class="h-screen">
-      <app-header></app-header>
-        <div class="cat flex justify-center mb-8">
-            <img class="w-1/5" src="../../assets/pop-cat.gif" alt="Cat gif" />
-          </div>
-          <div class="flex justify-center items-center">
-            <div class="text-center bg-black bg-opacity-85 border-3 border-white rounded w-3/5 py-4">
-              <h1 class="text-white text-8xl mb-3">Hola, admin</h1>
-            </div>
-          </div>
-    </section>
+  <app-header></app-header>
+<div class="inicio flex">
+  <button class="btn bg-custom-dab5e1 h-16 w-auto font-bold mx-11 px-3 mt-2" (click)="openAddWorkerModal()">Agregar Trabajador</button>
+  <button class="btn bg-custom-dab5e1 h-16 w-auto font-bold ml-auto px-3 mt-2 mr-11" >Productos</button>
+</div>
 
+  <div class="workers flex my-2 mx-11 h-96 overflow-auto">
+    <div class="grid grid-cols-3 gap-4">
+      <div class="workers-container px-3 font-semibold bg-slate-200 flex flex-col justify-between" *ngFor="let worker of workers">
+        <p class="text-3xl">{{ worker.name }}</p>
+        <p>- {{ worker.email }}</p>
+        <p>- {{ worker.role }}</p>
+  
+        <div class="btns my-2">
+          <button class="worker px-2 mr-20 bg-custom-dab5e1">Editar</button>
+          <button class="worker px-2 bg-custom-b3ebe4">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <app-create-workers
+  *ngIf="showAddWorkerModal" 
+  (addWorkerEvent)="onAddWorker($event)"
+  (closeModalEvent)="closeAddWorkerModal()"
+  ></app-create-workers>
+</section>
