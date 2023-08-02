@@ -1,13 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WorkersComponent } from './workers/workers.component';
+import { ProductsAdminComponent } from './products-admin/products-admin.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: WorkersComponent
+    redirectTo: 'workers',
+    pathMatch: 'full'
   },
-
+  {
+    path: 'workers',
+    component: WorkersComponent,
+  },
+  {
+    path: 'products',
+    component: ProductsAdminComponent
+  }
 ];
 
 @NgModule({

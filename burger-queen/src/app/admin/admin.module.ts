@@ -6,12 +6,14 @@ import { WorkersComponent } from './workers/workers.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateWorkersComponent } from './create-workers/create-workers.component';
+import { ProductsAdminComponent } from './products-admin/products-admin.component';
 
 
 @NgModule({
   declarations: [
     WorkersComponent,
-    CreateWorkersComponent
+    CreateWorkersComponent,
+    ProductsAdminComponent
   ],
   imports: [
     CommonModule,

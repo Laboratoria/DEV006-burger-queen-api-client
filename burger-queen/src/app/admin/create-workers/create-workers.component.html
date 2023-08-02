@@ -1,25 +1,27 @@
 <div class="modal-overlay">
-    <div class="modal-container flex flex-col bg-custom-dab5e1 w-2/4 text-4xl">
-        <h2>Agregar Trabajador</h2>
-        <form (ngSubmit)="addWorker()">
-            <label for="name">Nombre:</label>
-            <input type="text" name="name" [(ngModel)]="newWorker.name" required>
+    <div class="modal-container flex flex-col bg-slate-200 w-2/4">
+        <h2 class="font-extrabold text-4xl m-auto">Agregar Trabajador</h2>
+        <form class="m-auto" (ngSubmit)="addWorker()">
+            <label class="mt-2 block" for="name">Nombre:</label>
+            <input class="input" type="text" name="name" [(ngModel)]="newWorker.name" required>
 
-            <label for="email">Email:</label>
-            <input type="text" name="email" [(ngModel)]="newWorker.email" required>
+            <label class="mt-2 block" for="email">Email:</label>
+            <input class="input" type="text" name="email" [(ngModel)]="newWorker.email" required>
 
-            <label for="password">Password:</label>
-            <input type="text" name="password" [(ngModel)]="newWorker.password" required>
+            <label class="mt-2 block" for="password">Password:</label>
+            <input class="input" type="text" name="password" [(ngModel)]="newWorker.password" required>
 
-            <label for="role">Role:</label>
-            <select type="text" name="role" [(ngModel)]="newWorker.role" required>
+            <label class="mt-2 block" for="role">Role:</label>
+            <select class="input text-2xl h-11" type="text" name="role" [(ngModel)]="newWorker.role" required>
                 <option value="chef">Chef</option>
                 <option value="admin">Admin</option>
                 <option value="waiter">Waiter</option>
               </select>
 
-            <button type="submit">Agregar</button>
-            <button type="button" (click)="closeModal()">Cancelar</button>
+              <div class="btns flex mt-4 justify-between">
+            <button class="btn bg-custom-dab5e1 font-semibold" type="submit">Agregar</button>
+            <button class="btn bg-custom-b3ebe4 font-semibold" type="button" (click)="closeModal()">Cancelar</button>
+              </div>
         </form>
     </div>
 </div>

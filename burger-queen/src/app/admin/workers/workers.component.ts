@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Worker, CreateWorker } from 'src/app/interfaces/workers-interface';
 import { UsersServiceService } from 'src/app/services/users-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-workers',
@@ -11,7 +12,9 @@ export class WorkersComponent implements OnInit {
   workers: Worker[] = [];
   showAddWorkerModal = false;
 
-  constructor(private workersService: UsersServiceService) { }
+  constructor(
+    private workersService: UsersServiceService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.loadWorkers();
@@ -47,6 +50,7 @@ export class WorkersComponent implements OnInit {
     (createdWorker) => {
       this.workers.push(createdWorker);
       this.closeAddWorkerModal();
+      this.loadWorkers();
       console.log('Se agrego trabajador', createdWorker)
     },
     (error) => {
@@ -55,5 +59,7 @@ export class WorkersComponent implements OnInit {
   )
 }
 
-
+goToProducts() {
+  this.router.navigate(['admin/products'])
+}
 }
