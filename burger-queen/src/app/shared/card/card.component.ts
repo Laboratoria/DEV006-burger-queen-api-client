@@ -86,11 +86,13 @@ export class CardComponent implements OnInit, OnDestroy {
     const minutos = Math.floor((tiempo % 3600) / 60);
     const segundos = tiempo % 60;
 
-    return `${this.dosDigitos(dias)}:${this.dosDigitos(horas)}:${this.dosDigitos(minutos)}:${this.dosDigitos(segundos)}`;
-  }
+    const days = dias > 0 ? `${dias}d ` : '';
+    const hrs = horas > 0 ? `${horas}h ` : '';
+    const mins = minutos > 0 ? `${minutos}m ` : '';
+    const secs = segundos > 0 ? `${segundos}s` : '';
 
-  dosDigitos(numero: number): string {
-    return numero < 10 ? `0${numero}` : `${numero}`;
+
+    return `${days}${hrs}${mins}${secs}`;
   }
 
   markOrderReady(orderId: number) {

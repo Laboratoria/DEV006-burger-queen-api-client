@@ -1,0 +1,25 @@
+<div class="modal-overlay">
+    <div class="modal-container flex flex-col bg-custom-dab5e1 w-2/4 text-4xl">
+        <h2>Agregar Trabajador</h2>
+        <form (ngSubmit)="addWorker()">
+            <label for="name">Nombre:</label>
+            <input type="text" name="name" [(ngModel)]="newWorker.name" required>
+
+            <label for="email">Email:</label>
+            <input type="text" name="email" [(ngModel)]="newWorker.email" required>
+
+            <label for="password">Password:</label>
+            <input type="text" name="password" [(ngModel)]="newWorker.password" required>
+
+            <label for="role">Role:</label>
+            <select type="text" name="role" [(ngModel)]="newWorker.role" required>
+                <option value="chef">Chef</option>
+                <option value="admin">Admin</option>
+                <option value="waiter">Waiter</option>
+              </select>
+
+            <button type="submit">Agregar</button>
+            <button type="button" (click)="closeModal()">Cancelar</button>
+        </form>
+    </div>
+</div>
