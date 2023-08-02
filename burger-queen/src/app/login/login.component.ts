@@ -59,15 +59,15 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('user-rol', (res.user.role))
         //Dependiendo el rol sera la ruta
         
-        this.router.navigate(['./waiter']);
+        // this.router.navigate(['./waiter']);
 
-      //   if (role === 'waiter') {
-      //   this.router.navigate(['./waiter']);
-      // } else if (role === 'admin') {
-      //   this.router.navigate(['./admin']);
-      // } else if (role === 'chef') {
-      //   this.router.navigate(['./chef'])
-      // }
+        if (role === 'waiter') {
+        this.router.navigate(['./waiter']);
+      } else if (role === 'admin') {
+        this.router.navigate(['./admin']);
+      } else if (role === 'chef') {
+        this.router.navigate(['./chef'])
+      }
 
         Swal.fire({
           icon: 'success',
