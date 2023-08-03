@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MenuItem } from '../interfaces/menuInterface';
+import { CreateProduct, MenuItem } from '../interfaces/menuInterface';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
@@ -26,6 +26,14 @@ export class ProductsServiceService {
     const headers = this.getHeaders();
     return this.http.get<MenuItem[]>(productsUrl, {headers})
   }
+
+  addProduct(newProduct: CreateProduct): Observable<CreateProduct> {
+    const productsUrl = this.url + '/products';
+    const headers = this.getHeaders();
+    return this.http.post<CreateProduct>(productsUrl, newProduct, {headers})
+  }
+
+  
   // getAllProducts():Observable<any>{
   //   const productsUrl = this.url + '/products'
   //   const headers = this.createAuthorizationHeaders();

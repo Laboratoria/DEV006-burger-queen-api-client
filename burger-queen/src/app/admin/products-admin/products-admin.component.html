@@ -2,7 +2,7 @@
     <app-header></app-header>
 
     <div class="inicio flex">
-        <button class="btn bg-custom-dab5e1 h-16 w-auto font-bold mx-11 px-3 mt-2">Agregar Productos</button>
+        <button class="btn bg-custom-dab5e1 h-16 w-auto font-bold mx-11 px-3 mt-2" (click)="openAddProductModal()">Agregar Productos</button>
         <button class="btn bg-custom-dab5e1 h-16 w-auto font-bold ml-auto px-3 mt-2 mr-11" (click)="goToWorkers()">Trabajadores</button>
     </div>
 
@@ -22,4 +22,10 @@
             </div>
         </div>
     </div>
+
+    <app-create-products-modal
+    *ngIf="showAddProductModal"
+    (addProductEvent)="onAddProduct($event)"
+    (closeModalEvent)="closeAddProductModal()"
+    ></app-create-products-modal>
 </section>

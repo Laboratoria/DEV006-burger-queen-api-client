@@ -1,6 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { CreateWorker } from 'src/app/interfaces/workers-interface';
-import { UsersServiceService } from 'src/app/services/users-service.service';
 
 @Component({
   selector: 'app-create-workers',

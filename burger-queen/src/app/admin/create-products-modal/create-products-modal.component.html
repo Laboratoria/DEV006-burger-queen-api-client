@@ -1,0 +1,26 @@
+<div class="modal-overlay">
+    <div class="modal-container flex flex-col bg-slate-200 w-2/4">
+        <h2 class="font-extrabold text-4xl m-auto">Agregar Producto</h2>
+        <form class="m-auto" (ngSubmit)="addProduct()">
+            <label class="mt-2 block" for="name">Producto:</label>
+            <input class="input" type="text" name="name" [(ngModel)]="newProduct.name" required>
+
+            <label class="mt-2 block" for="price">Precio:</label>
+            <input class="input" type="text" name="price" [(ngModel)]="newProduct.price" required>
+
+            <label class="mt-2 block" for="type">Tipo:</label>
+            <select class="input text 3xl h-11" type="text" name="type" [(ngModel)]="newProduct.type" required>
+                <option value="Desayuno">Desayuno</option>
+                <option value="Almuerzo">Almuerzo</option>
+            </select>
+
+            <label class="mt-2 block" for="image">Imagen:</label>
+            <input class="input" type="text" name="image" [(ngModel)]="newProduct.image" required>
+
+              <div class="btns flex mt-4 justify-between">
+            <button class="btn bg-custom-dab5e1 font-semibold" type="submit">Agregar</button>
+            <button class="btn bg-custom-b3ebe4 font-semibold" type="button" (click)="closeModal()">Cancelar</button>
+              </div>
+        </form>
+    </div>
+</div>

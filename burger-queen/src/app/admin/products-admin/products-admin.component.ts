@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuItem } from 'src/app/interfaces/menuInterface';
+import { CreateProduct, Product } from 'src/app/interfaces/menuInterface';
 import { ProductsServiceService } from 'src/app/services/products-service.service';
 
 @Component({
@@ -9,10 +9,11 @@ import { ProductsServiceService } from 'src/app/services/products-service.servic
   styleUrls: ['./products-admin.component.css']
 })
 export class ProductsAdminComponent implements OnInit {
-  products: MenuItem[] = [];
+  products: Product[] = [];
+  showAddProductModal = false;
 
   constructor(
-    private productsServices :ProductsServiceService,
+    private productsService :ProductsServiceService,
     private router: Router
   ) {}
 
@@ -21,13 +22,39 @@ export class ProductsAdminComponent implements OnInit {
   }
 
   loadProducts() {
-    this.productsServices.getAllProducts().subscribe(
+    this.productsService.getAllProducts().subscribe(
       (products) => {
         console.log("products",products);
         this.products = products
       },
       (error) => {
         console.log(error)
+      }
+    )
+  }
+
+  openAddProductModal():void {
+    this.showAddProductModal = true;
+  }
+
+  closeAddProductModal(): void {
+    this.showAddProductModal = false;
+  }
+
+  onAddProduct(newProduct: CreateProduct): void {
+    if(!newProduct.name || !newProduct.price || !newProduct.type || !newProduct.image) {
+      console.log('Por favor ingresa todos lo campos del formulario')
+      return;
+    }
+    this.productsService.addProduct(newProduct).subscribe(
+      (createProduct) => {
+        this.products.push(createProduct);
+        this.closeAddProductModal();
+        this.loadProducts();
+        console.log('Se agrego el producto', createProduct);
+      },
+      (error) => {
+        console.log('error al agregar producto', error)
       }
     )
   }
