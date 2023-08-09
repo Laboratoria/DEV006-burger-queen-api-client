@@ -1,0 +1,17 @@
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+body {
+    background-color: #C68E62;
+    padding: 5px;
+    overflow-y: hidden;
+  }
+  root{
+    height: 100%;
+    width: 100%;
+  }
+
+

@@ -1,0 +1,22 @@
+/* DeletePopup.module.css */
+
+/* Cambia el color de fondo del cuadro de diálogo */
+.swal2-popup {
+  background-color: #fff5e0; /* Puedes ajustar el color de fondo aquí */
+}
+
+/* Cambia el color de texto del cuadro de diálogo */
+.swal2-title,
+.swal2-content {
+  color: #40160c; /* Puedes ajustar el color del texto aquí */
+}
+
+/* Cambia el color de fondo del botón de confirmación */
+.swal2-confirm {
+  background-color: #d33;
+}
+
+/* Cambia el color de fondo del botón de cancelación */
+.swal2-cancel {
+  background-color: #c1d78f;
+}
