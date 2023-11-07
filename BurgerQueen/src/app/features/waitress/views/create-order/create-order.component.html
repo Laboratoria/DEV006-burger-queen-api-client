@@ -1,0 +1,12 @@
+<div class="bgOrders">
+    <h2 class="titleSection">Crear Pedido</h2>
+    <div class="orderMenu">
+        <app-menu (menuItemsSelected)="handleAddItemToOrder($event)"></app-menu>
+        <app-order-detail [productList]="selectedItems"
+        (updateQuantity)="updateQuantity($event)"
+        (itemToRemove)="handleRemoveItem($event)"
+        (createOrder)="handleCreateOrder($event)">
+        </app-order-detail>
+    </div>
+    <app-modal *ngIf="showDeleteModal" [data]="itemSelected" (acceptButton)="handleRemoveItem($event)" (closeModal)="handleCloseModal()"></app-modal>
+</div>

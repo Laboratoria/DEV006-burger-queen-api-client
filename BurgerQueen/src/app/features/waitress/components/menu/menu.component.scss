@@ -1,0 +1,30 @@
+/* Importing Variables. */
+@import '../../../../../variables.scss';
+
+.containerButtons {
+    display: flex;
+    column-gap: 20px;
+    margin-bottom: 30px;
+}
+.menuBtn {
+    height: 35px;
+    width: 110px;
+    color: #808080;
+    cursor: pointer;
+}
+.selectedBtn {    
+    border-radius: 10px;
+    border: 1px solid $color-bq2;
+}
+.containerCards {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50vw;
+    column-gap: 15px;
+    row-gap: 15px;
+}
+.spinner-border {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+}

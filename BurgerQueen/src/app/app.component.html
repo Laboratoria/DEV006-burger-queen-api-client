@@ -1,0 +1,6 @@
+<main role="main">
+  <app-header *ngIf="router.url !== '/sign-in'"></app-header>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</main>

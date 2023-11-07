@@ -1,0 +1,44 @@
+<div class="orderDetailContainer ">
+    <form autocomplete="off" [formGroup]="formOrderInfo" (ngSubmit)="handleSubmit()">
+        <div class="headerList">
+            <span class="order">Pedido para : </span>
+            <div class="orderInfo">
+                <div class="row-input">
+                    <label for="clientName"> Nombre</label>
+                    <input formControlName="clientName" type="text" id="clientName" class="inputName" placeholder="María">
+                </div>
+                <div class="row-input">
+                    <label for="mesa"> Mesa</label>
+
+                    <select name="mesa" id="mesa" formControlName="table" class="inputName">
+                        <option hidden selected value="">- Seleccione -</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+            </div>
+                
+                  
+        </div>
+        <div class="rowItem">
+            <p class="name">Producto</p>
+            <p class="qty">Cantidad</p>
+            <p class="subtotal">P.U</p>
+            <p class="subtotal">Subtotal</p>
+        </div>
+        <div class="containerItems" *ngIf="productList">
+            <app-product-list-item  *ngFor="let item of productList; let i=index" [product] = item (updateQuantity)="updateQuantity.emit($event)" (itemToRemove)="itemToRemove.emit($event)" ></app-product-list-item>
+        </div>
+        <p *ngIf="!productList || productList.length === 0" class="placeholder">- Agregue productos a su orden - </p>
+        
+        <button type="submit"  class="btnSend primary-button" [disabled]="this.formOrderInfo?.invalid || productList?.length === 0" >Enviar a Cocina</button>
+      
+        <div class="total">
+            <p>TOTAL: ${{ productList | calculateTotal }}</p>
+        </div>
+    </form>
+</div>

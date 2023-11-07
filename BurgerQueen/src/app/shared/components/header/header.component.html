@@ -1,0 +1,19 @@
+<div class="headerContainer">
+    <img src="../../../../assets/img/burger.png" alt="logo" class="logo">
+    <div class="navContainer">
+        <nav>
+            <a [routerLink]="['/orders/create']" [class.activeLink]="activeLink === '/orders/create'">Crear Pedido</a>
+            <a [routerLink]="['/orders/pending']" [class.activeLink]="activeLink === '/orders/pending'">Pendientes</a>
+            <a [routerLink]="['/orders/delivered']" [class.activeLink]="activeLink === '/orders/delivered'">Entregados</a>
+        </nav>
+        <div class="profile">
+            <i role="button" aria-label="button-menu" class="fa-solid fa-user" (click)="showMenu()"></i>
+        </div>
+    </div>
+    <div class="menu" #menuRef (click)="signOut()">
+        <span class="personalInfo role">{{userRole}}</span>
+        <span class="personalInfo">{{userEmail}}</span>
+        <p >Cerrar Sesión</p>
+    </div>
+
+</div>
